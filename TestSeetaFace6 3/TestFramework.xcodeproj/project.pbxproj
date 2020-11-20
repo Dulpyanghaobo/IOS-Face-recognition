@@ -1,0 +1,717 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 53;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0430D387256265DF00F74073 /* SeetaFaceTracking600.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0430D386256265DF00F74073 /* SeetaFaceTracking600.framework */; };
+		04549F8825651CD700CF99AB /* UIImage+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 04549F8725651CD700CF99AB /* UIImage+Add.m */; };
+		04549F8B2565FB4300CF99AB /* OpencvCameraViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 04549F8A2565FB4300CF99AB /* OpencvCameraViewController.mm */; };
+		04549F8D2566003900CF99AB /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04549F8C2566003900CF99AB /* AssetsLibrary.framework */; };
+		04549FA12567516C00CF99AB /* UIAlertController+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 04549F9F2567516B00CF99AB /* UIAlertController+Extend.m */; };
+		04549FA52567520600CF99AB /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 04549FA42567520600CF99AB /* Utils.m */; };
+		04549FA8256758A900CF99AB /* UIImage+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 04549FA6256758A900CF99AB /* UIImage+Extend.m */; };
+		04549FB22567664F00CF99AB /* RectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04549FB02567664F00CF99AB /* RectManager.m */; };
+		04549FB42567679500CF99AB /* libexidcardios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04549FB32567679500CF99AB /* libexidcardios.a */; };
+		04549FBD2567C42D00CF99AB /* SeetaImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04549FBC2567C42C00CF99AB /* SeetaImageModel.m */; };
+		04AC3FC525639E7B005AA6F5 /* JunPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AC3FC425639E7B005AA6F5 /* JunPreviewView.m */; };
+		805681B078776CC791E8986C /* Pods_TestFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4603B053FC5A71E11CC415CE /* Pods_TestFramework.framework */; };
+		A4B2DE4F23C31D4C00F8F566 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B2DE4E23C31D4C00F8F566 /* AppDelegate.m */; };
+		A4B2DE5223C31D4C00F8F566 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B2DE5123C31D4C00F8F566 /* SceneDelegate.m */; };
+		A4B2DE5523C31D4C00F8F566 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4B2DE5423C31D4C00F8F566 /* ViewController.mm */; };
+		A4B2DE5823C31D4C00F8F566 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4B2DE5623C31D4C00F8F566 /* Main.storyboard */; };
+		A4B2DE5A23C31D5000F8F566 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4B2DE5923C31D5000F8F566 /* Assets.xcassets */; };
+		A4B2DE5D23C31D5000F8F566 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4B2DE5B23C31D5000F8F566 /* LaunchScreen.storyboard */; };
+		A4B2DE6023C31D5000F8F566 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B2DE5F23C31D5000F8F566 /* main.m */; };
+		A4B2DE8223C321AE00F8F566 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4B2DE6723C31E4600F8F566 /* Accelerate.framework */; };
+		A4B2DEC823C32F4900F8F566 /* assert in Resources */ = {isa = PBXBuildFile; fileRef = A4B2DEC723C32F4900F8F566 /* assert */; };
+		A4B2DEDD23C3372B00F8F566 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4B2DEDC23C3372B00F8F566 /* opencv2.framework */; };
+		A4B2DEDF23C338A600F8F566 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4B2DEDE23C338A600F8F566 /* libjpeg.a */; };
+		A4FF4E8224358EB9009E1D8A /* SeetaGenderPredictor600.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4FF4E7524358EB8009E1D8A /* SeetaGenderPredictor600.framework */; };
+		A4FF4E8324358EB9009E1D8A /* SeetaGenderPredictor600.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4FF4E7524358EB8009E1D8A /* SeetaGenderPredictor600.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A4FF4E8424358EB9009E1D8A /* tennis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4FF4E7624358EB8009E1D8A /* tennis.framework */; };
+		A4FF4E8524358EB9009E1D8A /* tennis.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4FF4E7624358EB8009E1D8A /* tennis.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A4FF4E8624358EB9009E1D8A /* SeetaAgePredictor600.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4FF4E7724358EB8009E1D8A /* SeetaAgePredictor600.framework */; };
+		A4FF4E8724358EB9009E1D8A /* SeetaAgePredictor600.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4FF4E7724358EB8009E1D8A /* SeetaAgePredictor600.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A4FF4E8824358EB9009E1D8A /* SeetaFaceTracking600.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4FF4E7824358EB8009E1D8A /* SeetaFaceTracking600.framework */; };
+		A4FF4E8924358EB9009E1D8A /* SeetaFaceTracking600.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4FF4E7824358EB8009E1D8A /* SeetaFaceTracking600.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A4FF4E8A24358EB9009E1D8A /* SeetaQualityAssessor300.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4FF4E7924358EB8009E1D8A /* SeetaQualityAssessor300.framework */; };
+		A4FF4E8B24358EB9009E1D8A /* SeetaQualityAssessor300.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4FF4E7924358EB8009E1D8A /* SeetaQualityAssessor300.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A4FF4E8C24358EB9009E1D8A /* SeetaFaceDetector600.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4FF4E7A24358EB8009E1D8A /* SeetaFaceDetector600.framework */; };
+		A4FF4E8D24358EB9009E1D8A /* SeetaFaceDetector600.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4FF4E7A24358EB8009E1D8A /* SeetaFaceDetector600.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A4FF4E8E24358EB9009E1D8A /* SeetaFaceLandmarker600.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4FF4E7B24358EB8009E1D8A /* SeetaFaceLandmarker600.framework */; };
+		A4FF4E8F24358EB9009E1D8A /* SeetaFaceLandmarker600.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4FF4E7B24358EB8009E1D8A /* SeetaFaceLandmarker600.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A4FF4E9024358EB9009E1D8A /* SeetaEyeStateDetector200.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4FF4E7C24358EB8009E1D8A /* SeetaEyeStateDetector200.framework */; };
+		A4FF4E9124358EB9009E1D8A /* SeetaEyeStateDetector200.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4FF4E7C24358EB8009E1D8A /* SeetaEyeStateDetector200.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A4FF4E9224358EB9009E1D8A /* SeetaFaceRecognizer610.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4FF4E7D24358EB8009E1D8A /* SeetaFaceRecognizer610.framework */; };
+		A4FF4E9324358EB9009E1D8A /* SeetaFaceRecognizer610.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4FF4E7D24358EB8009E1D8A /* SeetaFaceRecognizer610.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A4FF4E9424358EB9009E1D8A /* SeetaMaskDetector200.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4FF4E7E24358EB8009E1D8A /* SeetaMaskDetector200.framework */; };
+		A4FF4E9524358EB9009E1D8A /* SeetaMaskDetector200.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4FF4E7E24358EB8009E1D8A /* SeetaMaskDetector200.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A4FF4E9624358EB9009E1D8A /* SeetaAuthorize.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4FF4E7F24358EB8009E1D8A /* SeetaAuthorize.framework */; };
+		A4FF4E9724358EB9009E1D8A /* SeetaAuthorize.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4FF4E7F24358EB8009E1D8A /* SeetaAuthorize.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A4FF4E9824358EB9009E1D8A /* SeetaFaceAntiSpoofingX600.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4FF4E8024358EB8009E1D8A /* SeetaFaceAntiSpoofingX600.framework */; };
+		A4FF4E9924358EB9009E1D8A /* SeetaFaceAntiSpoofingX600.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4FF4E8024358EB8009E1D8A /* SeetaFaceAntiSpoofingX600.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A4FF4E9A24358EB9009E1D8A /* SeetaPoseEstimation600.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4FF4E8124358EB8009E1D8A /* SeetaPoseEstimation600.framework */; };
+		A4FF4E9B24358EB9009E1D8A /* SeetaPoseEstimation600.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4FF4E8124358EB8009E1D8A /* SeetaPoseEstimation600.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A4FF4E9D24358ECC009E1D8A /* SeetaAgePredictor600.framework in Resources */ = {isa = PBXBuildFile; fileRef = A4FF4E7724358EB8009E1D8A /* SeetaAgePredictor600.framework */; };
+		A4FF4E9E24358ECC009E1D8A /* SeetaAuthorize.framework in Resources */ = {isa = PBXBuildFile; fileRef = A4FF4E7F24358EB8009E1D8A /* SeetaAuthorize.framework */; };
+		A4FF4E9F24358ECC009E1D8A /* SeetaEyeStateDetector200.framework in Resources */ = {isa = PBXBuildFile; fileRef = A4FF4E7C24358EB8009E1D8A /* SeetaEyeStateDetector200.framework */; };
+		A4FF4EA024358ECC009E1D8A /* SeetaFaceAntiSpoofingX600.framework in Resources */ = {isa = PBXBuildFile; fileRef = A4FF4E8024358EB8009E1D8A /* SeetaFaceAntiSpoofingX600.framework */; };
+		A4FF4EA124358ECC009E1D8A /* SeetaFaceDetector600.framework in Resources */ = {isa = PBXBuildFile; fileRef = A4FF4E7A24358EB8009E1D8A /* SeetaFaceDetector600.framework */; };
+		A4FF4EA224358ECC009E1D8A /* SeetaFaceLandmarker600.framework in Resources */ = {isa = PBXBuildFile; fileRef = A4FF4E7B24358EB8009E1D8A /* SeetaFaceLandmarker600.framework */; };
+		A4FF4EA324358ECC009E1D8A /* SeetaFaceRecognizer610.framework in Resources */ = {isa = PBXBuildFile; fileRef = A4FF4E7D24358EB8009E1D8A /* SeetaFaceRecognizer610.framework */; };
+		A4FF4EA424358ECC009E1D8A /* SeetaFaceTracking600.framework in Resources */ = {isa = PBXBuildFile; fileRef = A4FF4E7824358EB8009E1D8A /* SeetaFaceTracking600.framework */; };
+		A4FF4EA524358ECC009E1D8A /* SeetaGenderPredictor600.framework in Resources */ = {isa = PBXBuildFile; fileRef = A4FF4E7524358EB8009E1D8A /* SeetaGenderPredictor600.framework */; };
+		A4FF4EA624358ECC009E1D8A /* SeetaMaskDetector200.framework in Resources */ = {isa = PBXBuildFile; fileRef = A4FF4E7E24358EB8009E1D8A /* SeetaMaskDetector200.framework */; };
+		A4FF4EA724358ECC009E1D8A /* SeetaPoseEstimation600.framework in Resources */ = {isa = PBXBuildFile; fileRef = A4FF4E8124358EB8009E1D8A /* SeetaPoseEstimation600.framework */; };
+		A4FF4EA824358ECC009E1D8A /* SeetaQualityAssessor300.framework in Resources */ = {isa = PBXBuildFile; fileRef = A4FF4E7924358EB8009E1D8A /* SeetaQualityAssessor300.framework */; };
+		A4FF4EA924358ECC009E1D8A /* tennis.framework in Resources */ = {isa = PBXBuildFile; fileRef = A4FF4E7624358EB8009E1D8A /* tennis.framework */; };
+		A4FF4EAC2435A44C009E1D8A /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4FF4EAB2435A44C009E1D8A /* UIImage+OpenCV.mm */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A4FF4E9C24358EB9009E1D8A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A4FF4E9124358EB9009E1D8A /* SeetaEyeStateDetector200.framework in Embed Frameworks */,
+				A4FF4E8F24358EB9009E1D8A /* SeetaFaceLandmarker600.framework in Embed Frameworks */,
+				A4FF4E8924358EB9009E1D8A /* SeetaFaceTracking600.framework in Embed Frameworks */,
+				A4FF4E8324358EB9009E1D8A /* SeetaGenderPredictor600.framework in Embed Frameworks */,
+				A4FF4E9524358EB9009E1D8A /* SeetaMaskDetector200.framework in Embed Frameworks */,
+				A4FF4E9B24358EB9009E1D8A /* SeetaPoseEstimation600.framework in Embed Frameworks */,
+				A4FF4E9724358EB9009E1D8A /* SeetaAuthorize.framework in Embed Frameworks */,
+				A4FF4E8724358EB9009E1D8A /* SeetaAgePredictor600.framework in Embed Frameworks */,
+				A4FF4E8D24358EB9009E1D8A /* SeetaFaceDetector600.framework in Embed Frameworks */,
+				A4FF4E8524358EB9009E1D8A /* tennis.framework in Embed Frameworks */,
+				A4FF4E9324358EB9009E1D8A /* SeetaFaceRecognizer610.framework in Embed Frameworks */,
+				A4FF4E8B24358EB9009E1D8A /* SeetaQualityAssessor300.framework in Embed Frameworks */,
+				A4FF4E9924358EB9009E1D8A /* SeetaFaceAntiSpoofingX600.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0430D386256265DF00F74073 /* SeetaFaceTracking600.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeetaFaceTracking600.framework; sourceTree = "<group>"; };
+		04549F8625651CD700CF99AB /* UIImage+Add.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Add.h"; sourceTree = "<group>"; };
+		04549F8725651CD700CF99AB /* UIImage+Add.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Add.m"; sourceTree = "<group>"; };
+		04549F892565FB4300CF99AB /* OpencvCameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpencvCameraViewController.h; sourceTree = "<group>"; };
+		04549F8A2565FB4300CF99AB /* OpencvCameraViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OpencvCameraViewController.mm; sourceTree = "<group>"; };
+		04549F8C2566003900CF99AB /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		04549F9F2567516B00CF99AB /* UIAlertController+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+Extend.m"; sourceTree = "<group>"; };
+		04549FA02567516B00CF99AB /* UIAlertController+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Extend.h"; sourceTree = "<group>"; };
+		04549FA32567520600CF99AB /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		04549FA42567520600CF99AB /* Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		04549FA6256758A900CF99AB /* UIImage+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extend.m"; sourceTree = "<group>"; };
+		04549FA7256758A900CF99AB /* UIImage+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extend.h"; sourceTree = "<group>"; };
+		04549FA925675B4C00CF99AB /* excards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = excards.h; sourceTree = "<group>"; };
+		04549FAA25675BF300CF99AB /* commondef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commondef.h; sourceTree = "<group>"; };
+		04549FB02567664F00CF99AB /* RectManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RectManager.m; sourceTree = "<group>"; };
+		04549FB12567664F00CF99AB /* RectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RectManager.h; sourceTree = "<group>"; };
+		04549FB32567679500CF99AB /* libexidcardios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libexidcardios.a; sourceTree = "<group>"; };
+		04549FBB2567C42C00CF99AB /* SeetaImageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeetaImageModel.h; sourceTree = "<group>"; };
+		04549FBC2567C42C00CF99AB /* SeetaImageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeetaImageModel.m; sourceTree = "<group>"; };
+		04AC3FC325639E7B005AA6F5 /* JunPreviewView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JunPreviewView.h; sourceTree = "<group>"; };
+		04AC3FC425639E7B005AA6F5 /* JunPreviewView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JunPreviewView.m; sourceTree = "<group>"; };
+		4603B053FC5A71E11CC415CE /* Pods_TestFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		484D0F14FC34A6837F723105 /* Pods-TestFramework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestFramework.release.xcconfig"; path = "Target Support Files/Pods-TestFramework/Pods-TestFramework.release.xcconfig"; sourceTree = "<group>"; };
+		A4B2DE4A23C31D4C00F8F566 /* TestFramework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestFramework.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4B2DE4D23C31D4C00F8F566 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A4B2DE4E23C31D4C00F8F566 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A4B2DE5023C31D4C00F8F566 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		A4B2DE5123C31D4C00F8F566 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		A4B2DE5323C31D4C00F8F566 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		A4B2DE5423C31D4C00F8F566 /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
+		A4B2DE5723C31D4C00F8F566 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A4B2DE5923C31D5000F8F566 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A4B2DE5C23C31D5000F8F566 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A4B2DE5E23C31D5000F8F566 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A4B2DE5F23C31D5000F8F566 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A4B2DE6723C31E4600F8F566 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		A4B2DEC723C32F4900F8F566 /* assert */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assert; sourceTree = "<group>"; };
+		A4B2DEDC23C3372B00F8F566 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		A4B2DEDE23C338A600F8F566 /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libjpeg.a; sourceTree = "<group>"; };
+		A4FF4E7524358EB8009E1D8A /* SeetaGenderPredictor600.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeetaGenderPredictor600.framework; sourceTree = "<group>"; };
+		A4FF4E7624358EB8009E1D8A /* tennis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = tennis.framework; sourceTree = "<group>"; };
+		A4FF4E7724358EB8009E1D8A /* SeetaAgePredictor600.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeetaAgePredictor600.framework; sourceTree = "<group>"; };
+		A4FF4E7824358EB8009E1D8A /* SeetaFaceTracking600.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeetaFaceTracking600.framework; sourceTree = "<group>"; };
+		A4FF4E7924358EB8009E1D8A /* SeetaQualityAssessor300.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeetaQualityAssessor300.framework; sourceTree = "<group>"; };
+		A4FF4E7A24358EB8009E1D8A /* SeetaFaceDetector600.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeetaFaceDetector600.framework; sourceTree = "<group>"; };
+		A4FF4E7B24358EB8009E1D8A /* SeetaFaceLandmarker600.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeetaFaceLandmarker600.framework; sourceTree = "<group>"; };
+		A4FF4E7C24358EB8009E1D8A /* SeetaEyeStateDetector200.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeetaEyeStateDetector200.framework; sourceTree = "<group>"; };
+		A4FF4E7D24358EB8009E1D8A /* SeetaFaceRecognizer610.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeetaFaceRecognizer610.framework; sourceTree = "<group>"; };
+		A4FF4E7E24358EB8009E1D8A /* SeetaMaskDetector200.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeetaMaskDetector200.framework; sourceTree = "<group>"; };
+		A4FF4E7F24358EB8009E1D8A /* SeetaAuthorize.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeetaAuthorize.framework; sourceTree = "<group>"; };
+		A4FF4E8024358EB8009E1D8A /* SeetaFaceAntiSpoofingX600.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeetaFaceAntiSpoofingX600.framework; sourceTree = "<group>"; };
+		A4FF4E8124358EB8009E1D8A /* SeetaPoseEstimation600.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeetaPoseEstimation600.framework; sourceTree = "<group>"; };
+		A4FF4EAA2435A44C009E1D8A /* UIImage+OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OpenCV.h"; sourceTree = "<group>"; };
+		A4FF4EAB2435A44C009E1D8A /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+OpenCV.mm"; sourceTree = "<group>"; };
+		CA7F2F1432D87D8160DEFF14 /* Pods-TestFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestFramework.debug.xcconfig"; path = "Target Support Files/Pods-TestFramework/Pods-TestFramework.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A4B2DE4723C31D4C00F8F566 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A4FF4E9A24358EB9009E1D8A /* SeetaPoseEstimation600.framework in Frameworks */,
+				A4FF4E8E24358EB9009E1D8A /* SeetaFaceLandmarker600.framework in Frameworks */,
+				A4FF4E8C24358EB9009E1D8A /* SeetaFaceDetector600.framework in Frameworks */,
+				A4FF4E9824358EB9009E1D8A /* SeetaFaceAntiSpoofingX600.framework in Frameworks */,
+				0430D387256265DF00F74073 /* SeetaFaceTracking600.framework in Frameworks */,
+				04549FB42567679500CF99AB /* libexidcardios.a in Frameworks */,
+				A4FF4E8424358EB9009E1D8A /* tennis.framework in Frameworks */,
+				A4FF4E8624358EB9009E1D8A /* SeetaAgePredictor600.framework in Frameworks */,
+				A4FF4E9224358EB9009E1D8A /* SeetaFaceRecognizer610.framework in Frameworks */,
+				A4FF4E9624358EB9009E1D8A /* SeetaAuthorize.framework in Frameworks */,
+				A4FF4E9424358EB9009E1D8A /* SeetaMaskDetector200.framework in Frameworks */,
+				A4FF4E8A24358EB9009E1D8A /* SeetaQualityAssessor300.framework in Frameworks */,
+				A4B2DEDF23C338A600F8F566 /* libjpeg.a in Frameworks */,
+				A4B2DEDD23C3372B00F8F566 /* opencv2.framework in Frameworks */,
+				A4FF4E9024358EB9009E1D8A /* SeetaEyeStateDetector200.framework in Frameworks */,
+				A4FF4E8224358EB9009E1D8A /* SeetaGenderPredictor600.framework in Frameworks */,
+				A4B2DE8223C321AE00F8F566 /* Accelerate.framework in Frameworks */,
+				A4FF4E8824358EB9009E1D8A /* SeetaFaceTracking600.framework in Frameworks */,
+				805681B078776CC791E8986C /* Pods_TestFramework.framework in Frameworks */,
+				04549F8D2566003900CF99AB /* AssetsLibrary.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		04549FA2256751F200CF99AB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				04549FA32567520600CF99AB /* Utils.h */,
+				04549FA42567520600CF99AB /* Utils.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		04549FAF2567663E00CF99AB /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				04549FB12567664F00CF99AB /* RectManager.h */,
+				04549FB02567664F00CF99AB /* RectManager.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		04549FBA2567C41000CF99AB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				04549FBB2567C42C00CF99AB /* SeetaImageModel.h */,
+				04549FBC2567C42C00CF99AB /* SeetaImageModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		04AC3FD7256502AA005AA6F5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				04AC3FC325639E7B005AA6F5 /* JunPreviewView.h */,
+				04AC3FC425639E7B005AA6F5 /* JunPreviewView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		04AC3FD825650308005AA6F5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				04549FAA25675BF300CF99AB /* commondef.h */,
+				04549FA925675B4C00CF99AB /* excards.h */,
+				04549FA7256758A900CF99AB /* UIImage+Extend.h */,
+				04549FA6256758A900CF99AB /* UIImage+Extend.m */,
+				04549FA02567516B00CF99AB /* UIAlertController+Extend.h */,
+				04549F9F2567516B00CF99AB /* UIAlertController+Extend.m */,
+				A4FF4EAA2435A44C009E1D8A /* UIImage+OpenCV.h */,
+				A4FF4EAB2435A44C009E1D8A /* UIImage+OpenCV.mm */,
+				04549F8625651CD700CF99AB /* UIImage+Add.h */,
+				04549F8725651CD700CF99AB /* UIImage+Add.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		04AC3FD925650312005AA6F5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		04AC3FDA25650327005AA6F5 /* Resouce */ = {
+			isa = PBXGroup;
+			children = (
+				A4B2DE5623C31D4C00F8F566 /* Main.storyboard */,
+				A4B2DE5B23C31D5000F8F566 /* LaunchScreen.storyboard */,
+				A4B2DE5923C31D5000F8F566 /* Assets.xcassets */,
+				A4B2DE4D23C31D4C00F8F566 /* AppDelegate.h */,
+				A4B2DE4E23C31D4C00F8F566 /* AppDelegate.m */,
+				A4B2DE5023C31D4C00F8F566 /* SceneDelegate.h */,
+				A4B2DE5123C31D4C00F8F566 /* SceneDelegate.m */,
+			);
+			path = Resouce;
+			sourceTree = "<group>";
+		};
+		04AC3FDB25650347005AA6F5 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A4B2DE5323C31D4C00F8F566 /* ViewController.h */,
+				A4B2DE5423C31D4C00F8F566 /* ViewController.mm */,
+				04549F892565FB4300CF99AB /* OpencvCameraViewController.h */,
+				04549F8A2565FB4300CF99AB /* OpencvCameraViewController.mm */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A4B2DE4123C31D4C00F8F566 = {
+			isa = PBXGroup;
+			children = (
+				04549FB32567679500CF99AB /* libexidcardios.a */,
+				A4B2DEC723C32F4900F8F566 /* assert */,
+				A4B2DE4C23C31D4C00F8F566 /* TestFramework */,
+				A4B2DE4B23C31D4C00F8F566 /* Products */,
+				A4B2DE6623C31E4600F8F566 /* Frameworks */,
+				A9B9545E805E0BB21C4473D0 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		A4B2DE4B23C31D4C00F8F566 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A4B2DE4A23C31D4C00F8F566 /* TestFramework.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A4B2DE4C23C31D4C00F8F566 /* TestFramework */ = {
+			isa = PBXGroup;
+			children = (
+				04549FBA2567C41000CF99AB /* Model */,
+				04549FAF2567663E00CF99AB /* Tools */,
+				04549FA2256751F200CF99AB /* Utils */,
+				04AC3FDB25650347005AA6F5 /* ViewController */,
+				04AC3FDA25650327005AA6F5 /* Resouce */,
+				04AC3FD925650312005AA6F5 /* ViewModel */,
+				04AC3FD825650308005AA6F5 /* Extensions */,
+				04AC3FD7256502AA005AA6F5 /* Views */,
+				A4B2DE5E23C31D5000F8F566 /* Info.plist */,
+				A4B2DE5F23C31D5000F8F566 /* main.m */,
+			);
+			path = TestFramework;
+			sourceTree = "<group>";
+		};
+		A4B2DE6623C31E4600F8F566 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				04549F8C2566003900CF99AB /* AssetsLibrary.framework */,
+				0430D386256265DF00F74073 /* SeetaFaceTracking600.framework */,
+				A4FF4E7724358EB8009E1D8A /* SeetaAgePredictor600.framework */,
+				A4FF4E7F24358EB8009E1D8A /* SeetaAuthorize.framework */,
+				A4FF4E7C24358EB8009E1D8A /* SeetaEyeStateDetector200.framework */,
+				A4FF4E8024358EB8009E1D8A /* SeetaFaceAntiSpoofingX600.framework */,
+				A4FF4E7A24358EB8009E1D8A /* SeetaFaceDetector600.framework */,
+				A4FF4E7B24358EB8009E1D8A /* SeetaFaceLandmarker600.framework */,
+				A4FF4E7D24358EB8009E1D8A /* SeetaFaceRecognizer610.framework */,
+				A4FF4E7824358EB8009E1D8A /* SeetaFaceTracking600.framework */,
+				A4FF4E7524358EB8009E1D8A /* SeetaGenderPredictor600.framework */,
+				A4FF4E7E24358EB8009E1D8A /* SeetaMaskDetector200.framework */,
+				A4FF4E8124358EB8009E1D8A /* SeetaPoseEstimation600.framework */,
+				A4FF4E7924358EB8009E1D8A /* SeetaQualityAssessor300.framework */,
+				A4FF4E7624358EB8009E1D8A /* tennis.framework */,
+				A4B2DEDE23C338A600F8F566 /* libjpeg.a */,
+				A4B2DEDC23C3372B00F8F566 /* opencv2.framework */,
+				A4B2DE6723C31E4600F8F566 /* Accelerate.framework */,
+				4603B053FC5A71E11CC415CE /* Pods_TestFramework.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A9B9545E805E0BB21C4473D0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CA7F2F1432D87D8160DEFF14 /* Pods-TestFramework.debug.xcconfig */,
+				484D0F14FC34A6837F723105 /* Pods-TestFramework.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A4B2DE4923C31D4C00F8F566 /* TestFramework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A4B2DE6323C31D5000F8F566 /* Build configuration list for PBXNativeTarget "TestFramework" */;
+			buildPhases = (
+				E2D64EC66213CA68EA2E59BE /* [CP] Check Pods Manifest.lock */,
+				A4B2DE4623C31D4C00F8F566 /* Sources */,
+				A4B2DE4723C31D4C00F8F566 /* Frameworks */,
+				A4B2DE4823C31D4C00F8F566 /* Resources */,
+				A4FF4E9C24358EB9009E1D8A /* Embed Frameworks */,
+				5E6C7909F60179BFA49439DD /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TestFramework;
+			productName = TestFramework;
+			productReference = A4B2DE4A23C31D4C00F8F566 /* TestFramework.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A4B2DE4223C31D4C00F8F566 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = seetadev;
+				TargetAttributes = {
+					A4B2DE4923C31D4C00F8F566 = {
+						CreatedOnToolsVersion = 11.3;
+						LastSwiftMigration = 1210;
+					};
+				};
+			};
+			buildConfigurationList = A4B2DE4523C31D4C00F8F566 /* Build configuration list for PBXProject "TestFramework" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A4B2DE4123C31D4C00F8F566;
+			productRefGroup = A4B2DE4B23C31D4C00F8F566 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A4B2DE4923C31D4C00F8F566 /* TestFramework */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A4B2DE4823C31D4C00F8F566 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A4FF4E9D24358ECC009E1D8A /* SeetaAgePredictor600.framework in Resources */,
+				A4FF4E9E24358ECC009E1D8A /* SeetaAuthorize.framework in Resources */,
+				A4FF4E9F24358ECC009E1D8A /* SeetaEyeStateDetector200.framework in Resources */,
+				A4FF4EA024358ECC009E1D8A /* SeetaFaceAntiSpoofingX600.framework in Resources */,
+				A4FF4EA124358ECC009E1D8A /* SeetaFaceDetector600.framework in Resources */,
+				A4FF4EA224358ECC009E1D8A /* SeetaFaceLandmarker600.framework in Resources */,
+				A4FF4EA324358ECC009E1D8A /* SeetaFaceRecognizer610.framework in Resources */,
+				A4FF4EA424358ECC009E1D8A /* SeetaFaceTracking600.framework in Resources */,
+				A4FF4EA524358ECC009E1D8A /* SeetaGenderPredictor600.framework in Resources */,
+				A4FF4EA624358ECC009E1D8A /* SeetaMaskDetector200.framework in Resources */,
+				A4FF4EA724358ECC009E1D8A /* SeetaPoseEstimation600.framework in Resources */,
+				A4FF4EA824358ECC009E1D8A /* SeetaQualityAssessor300.framework in Resources */,
+				A4FF4EA924358ECC009E1D8A /* tennis.framework in Resources */,
+				A4B2DEC823C32F4900F8F566 /* assert in Resources */,
+				A4B2DE5D23C31D5000F8F566 /* LaunchScreen.storyboard in Resources */,
+				A4B2DE5A23C31D5000F8F566 /* Assets.xcassets in Resources */,
+				A4B2DE5823C31D4C00F8F566 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5E6C7909F60179BFA49439DD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TestFramework/Pods-TestFramework-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TestFramework/Pods-TestFramework-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TestFramework/Pods-TestFramework-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E2D64EC66213CA68EA2E59BE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TestFramework-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A4B2DE4623C31D4C00F8F566 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04549F8825651CD700CF99AB /* UIImage+Add.m in Sources */,
+				04549FA52567520600CF99AB /* Utils.m in Sources */,
+				A4B2DE5523C31D4C00F8F566 /* ViewController.mm in Sources */,
+				A4B2DE4F23C31D4C00F8F566 /* AppDelegate.m in Sources */,
+				A4B2DE6023C31D5000F8F566 /* main.m in Sources */,
+				04549FB22567664F00CF99AB /* RectManager.m in Sources */,
+				04549FA12567516C00CF99AB /* UIAlertController+Extend.m in Sources */,
+				04AC3FC525639E7B005AA6F5 /* JunPreviewView.m in Sources */,
+				A4B2DE5223C31D4C00F8F566 /* SceneDelegate.m in Sources */,
+				04549F8B2565FB4300CF99AB /* OpencvCameraViewController.mm in Sources */,
+				A4FF4EAC2435A44C009E1D8A /* UIImage+OpenCV.mm in Sources */,
+				04549FA8256758A900CF99AB /* UIImage+Extend.m in Sources */,
+				04549FBD2567C42D00CF99AB /* SeetaImageModel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A4B2DE5623C31D4C00F8F566 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A4B2DE5723C31D4C00F8F566 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A4B2DE5B23C31D5000F8F566 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A4B2DE5C23C31D5000F8F566 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A4B2DE6123C31D5000F8F566 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		A4B2DE6223C31D5000F8F566 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A4B2DE6423C31D5000F8F566 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA7F2F1432D87D8160DEFF14 /* Pods-TestFramework.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = WSJK7MN7ZH;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = TestFramework/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = seetadev.demo.test.demo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TestFramework/TestFramework-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A4B2DE6523C31D5000F8F566 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 484D0F14FC34A6837F723105 /* Pods-TestFramework.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = WSJK7MN7ZH;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = TestFramework/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = seetadev.demo.test.demo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TestFramework/TestFramework-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A4B2DE4523C31D4C00F8F566 /* Build configuration list for PBXProject "TestFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A4B2DE6123C31D5000F8F566 /* Debug */,
+				A4B2DE6223C31D5000F8F566 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A4B2DE6323C31D5000F8F566 /* Build configuration list for PBXNativeTarget "TestFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A4B2DE6423C31D5000F8F566 /* Debug */,
+				A4B2DE6523C31D5000F8F566 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A4B2DE4223C31D4C00F8F566 /* Project object */;
+}

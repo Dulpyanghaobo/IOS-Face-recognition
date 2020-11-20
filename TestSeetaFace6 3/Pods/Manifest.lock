@@ -1,0 +1,20 @@
+PODS:
+  - Masonry (1.1.0)
+  - TZImagePickerController (3.5.2)
+
+DEPENDENCIES:
+  - Masonry (= 1.1.0)
+  - TZImagePickerController
+
+SPEC REPOS:
+  trunk:
+    - Masonry
+    - TZImagePickerController
+
+SPEC CHECKSUMS:
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  TZImagePickerController: f1e4ed5ca1ddfc7e48d20867ff6a5c1e41a4b579
+
+PODFILE CHECKSUM: dec0a3ca0fbc26ef9324a04e50b5215b6ea77185
+
+COCOAPODS: 1.10.0
