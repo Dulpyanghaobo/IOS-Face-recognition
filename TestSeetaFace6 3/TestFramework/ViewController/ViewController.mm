@@ -43,29 +43,6 @@
 #include <stdlib.h>
 #define EHiWeakSelf(type)           __weak typeof(type) weak##type = type;
 #define EHiStrongSelf(_instance)    __strong typeof(weak##_instance) _instance = weak##_instance;
-//std::string buddles = [[[NSBundle mainBundle] resourcePath] UTF8String];
-
-////    构造人脸检测器
-//seeta::ModelSetting FD_models(buddles + "/assert/model/face_detector.csta");
-////     关键点检测器
-//seeta::ModelSetting FL_model(buddle + "/assert/model/face_landmarker_pts5.csta");
-////    简单人脸识别模型
-//seeta::ModelSetting FR_model(buddle + "/assert/model/face_recognizer_light.csta");
-////seeta::ModelSetting FR_model(buddle + "/assert/model/SeetaFaceRecognizer6.0.TRIPLE.sta");
-////    全局活体检测和局部活体检测
-//seeta::ModelSetting FAS_model(std::vector<std::string>({buddle + "/assert/model/fas_first.csta",buddle + "/assert/model/fas_second.csta"}));
-//seeta::ModelSetting Traker_model(buddle + "/assert/model/");
-//seeta::FaceTracker *Tracker_model();
-//seeta::FaceDetector FDs(FD_models);
-//seeta::FaceLandmarker FL(FL_model);
-//seeta::FaceRecognizer FR(FR_model);
-//seeta::FaceAntiSpoofing FAS(FAS_model);
-//seeta::EyeStateDetector ESD(seeta::ModelSetting(buddle + "/assert/model/eye_state.csta"));
-//seeta::MaskDetector MD(seeta::ModelSetting(buddle + "/assert/model/mask_detector.csta"));
-//seeta::AgePredictor AP(seeta::ModelSetting(buddle + "/assert/model/age_predictor.csta"));
-//seeta::GenderPredictor GP(seeta::ModelSetting(buddle + "/assert/model/gender_predictor.csta"));
-
-//std::string img_path = buddles + "/assert/6.jpg";
 
 
 SeetaImageData imgCompare;
@@ -92,7 +69,7 @@ __const int w = [[UIScreen mainScreen] bounds].size.width;
 @property (nonatomic,strong) UIButton *showImage;
 
 /** 身份证背面照片*/
-@property (nonatomic,strong) UIButton *backShowImage;
+//@property (nonatomic,strong) UIButton *backShowImage;
 
 @property (nonatomic,strong) UIButton *IdCardInfoButton;
 
@@ -102,7 +79,7 @@ __const int w = [[UIScreen mainScreen] bounds].size.width;
 //------------------  数据  ---------------------
 //后台传入的图片数据
 @property (nonatomic,strong) NSArray<UIImage *> *imageArry;
-//@property (nonatomic,strong) CameraViewController *vc;
+
 @property (nonatomic,strong) OpencvCameraViewController *vc;
 
 @end
@@ -177,168 +154,10 @@ namespace seeta {
     };
 }
 
-//- (void)updateLabel:(const std::string &)str {
-//    [self.detailDataButton setText:[NSString stringWithCString:str.c_str() encoding:[NSString defaultCStringEncoding]]];
-//}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self p_setUpUI];
-    PipeStream pipe;
-    //MARK: 描述-人脸对比
-//    auto cvimg = cv::imread(img_path);
-//    std::string img_path2 = buddle + "/assert/5.jpg";
-//    auto cvImage = cv::imread(img_path2);
-//    [self.imageView2 setImage: uiimage];
-//    [self.imageView2 setContentMode: UIViewContentModeScaleAspectFit];
-//    imgCompare.height = cvImage.rows;
-//    imgCompare.width = cvImage.cols;
-//    imgCompare.channels = cvImage.channels();
-//    imgCompare.data = cvImage.data;
-//    self.lab = [[UILabel alloc]init];
-//    [self.view addSubview:self.lab];
-//    self.lab.frame = CGRectMake(w/2, 90, w/2, 30);
-    
-//    //  获取图像数据
-//    SeetaImageData img;
-//    img.height = cvimg.rows;
-//    img.width = cvimg.cols;
-//    img.channels = cvimg.channels();
-//    img.data = cvimg.data;
-////
-//    auto faces = FDs.detect_v2(img);
-//
-//    auto faceComapres = FD.detect_v2(imgCompare);
-//
-//    pipe << "Detected " << faces.size() << " face(s)." << "\n";
-//    for (auto &face : faces) {
-//        pipe << "    " << "[" << face.pos.x << ", " << face.pos.y << ", "
-//        << face.pos.width << ", " << face.pos.height << "]" << "\n";
-//    }
-//
-//    if (faces.empty()) {
-//        return;
-//    }
-//
-//    auto face = faces[0];
-//    auto faceCompare = faceComapres[0];
-//
-//    auto points = FL.mark(img, face.pos);
-//    auto pointCompare = FL.mark(imgCompare, faceCompare.pos);
-//    //    pipe << "Got " << FL.number() << " landmarks on face 0." << "\n";
-//    //    pipe << "    " << "[";
-//    //    for (size_t i = 0; i < points.size(); ++i) {
-//    //        if (i) {
-//    //            pipe << "\n" << "     ";
-//    //        }
-//    //        auto &point = points[i];
-//    //        pipe << "(" << point.x << ", " << point.y << ")";
-//    //    }
-//    //    pipe << "]" << "\n";
-//
-//    FR.Extract(img, points.data(), features.get());
-//    FR.Extract(imgCompare, pointCompare.data(), featureCompare.get());
-//    pipe << "Extract " << FR.GetExtractFeatureSize() << " features." << "\n";
-//
-//    feature = extract(&FR, img, points);
-//    std::shared_ptr<float> featurecompare = extract(&FR, imgCompare, pointCompare);
-//    //    float  Similarity = FR->CalculateSimilarity(feat1.get(), feat2.get()
-//    float simality = FR.CalculateSimilarity(features.get(), featurecompare.get());
-//    pipe << "simality:"<<simality<<"\n";
-//    auto status = FAS.Predict(img, face.pos, points.data());
-//    if (simality >= 0.3) {
-//        self.lab.text = @"验证已通过";
-//    }else {
-//        self.lab.text =@"验证未通过";
-//    }
-//    switch (status) {
-//        case seeta::FaceAntiSpoofing::Status::REAL:
-//            pipe << "FAS: real" << "\n";
-//            break;
-//        case seeta::FaceAntiSpoofing::Status::SPOOF:
-//            pipe << "FAS: spoof" << "\n";
-//            break;
-//        case seeta::FaceAntiSpoofing::Status::FUZZY:
-//            pipe << "FAS: fuzzy" << "\n";
-//            break;
-//        case seeta::FaceAntiSpoofing::Status::DETECTING:
-//            pipe << "FAS: detecting" << "\n";
-//            break;
-//        default:
-//            break;
-//    }
-//
-//    float clarity, reality;
-//    FAS.GetPreFrameScore(&clarity, &reality);
-//
-//    pipe << "FAS: clarity=" << clarity << ", reality=" << reality << "\n";
-//
-//    seeta::EyeStateDetector::EYE_STATE left_eye, right_eye;
-//    const char *EYE_STATE_STR[] = {"close", "open", "fuzzy", "unknown"};
-//    ESD.Detect(img, points.data(), left_eye, right_eye);
-//
-//    pipe << "Eyes: (" << EYE_STATE_STR[left_eye] << ", "
-//    << EYE_STATE_STR[right_eye] << ")" << "\n";
-//
-//    bool mask = MD.detect(img, face.pos);
-//
-//    pipe << "Mask: " << std::boolalpha << mask << "\n";
-//
-//    int age = 0;
-//    AP.PredictAgeWithCrop(img, points.data(), age);
-//
-//    pipe << "Age: " << age << "\n";
-//
-//    seeta::GenderPredictor::GENDER gender;
-//    const char *GENDER_STR[] = {"male", "female"};
-//    GP.PredictGenderWithCrop(img, points.data(), gender);
-//
-//    pipe << "Gender: " << GENDER_STR[int(gender)] << "\n";
-//
-//
-//    seeta::FaceTracker FT(seeta::ModelSetting(buddle + "/assert/model/face_detector.csta"),
-//                          img.width, img.height);
-//
-//    auto ctracked_faces = FT.Track(img);
-//    auto tracked_faces = std::vector<SeetaTrackingFaceInfo>(ctracked_faces.data, ctracked_faces.data + ctracked_faces.size);
-//
-//    //    pipe << "Tracked " << faces.size() << " face(s)." << "\n";
-//    //    for (auto &face : tracked_faces) {
-//    //        pipe << "    " << "[" << face.pos.x << ", " << face.pos.y << ", "
-//    //                  << face.pos.width << ", " << face.pos.height << "]"
-//    //                  << " PID = " << face.PID
-//    //                  << "\n";
-//    //    }
-//
-//    //    pipe << "QualityOf:" << "\n";
-//    //
-//    //    TestQuality<seeta::QualityOfBrightness>(pipe, "    Brightness", img, face.pos, points);
-//    //    TestQuality<seeta::QualityOfClarity>(pipe, "    Clarity", img, face.pos, points);
-//    //    TestQuality<seeta::QualityOfIntegrity>(pipe, "    Integrity", img, face.pos, points);
-//    //    TestQuality<seeta::QualityOfClarityEx>(pipe, "    ClarityEx", img, face.pos, points,
-//    //                                           buddle + "/assert/model/quality_lbn.csta",
-//    //                                           buddle + "/assert/model/face_landmarker_pts68.csta");
-//    //    TestQuality<seeta::QualityOfPose>(pipe, "    Pose", img, face.pos, points);
-//    //    TestQuality<seeta::QualityOfPoseEx>(pipe, "    PoseEx", img, face.pos, points,
-//    //                                        seeta::ModelSetting(buddle + "/assert/model/pose_estimation.csta"));
-//    //    TestQuality<seeta::QualityOfResolution>(pipe, "    Resolution", img, face.pos, points);
-//    //
-//    //    pipe << "Every thing's OK" << "\n";
-//
-//    [self updateLabel:pipe.str()];
-    
-    
 }
-//std::shared_ptr<float> extract(
-//                               seeta::FaceRecognizer *fr,
-//                               const SeetaImageData &image,
-//                               const std::vector<SeetaPointF> &points) {
-//    std::shared_ptr<float> features(
-//                                    new float[fr->GetExtractFeatureSize()],
-//                                    std::default_delete<float[]>());
-//    fr->Extract(image, points.data(), features.get());
-//    return features;
-//}
 //MARK: 描述 -delegate
 
 - (void)pickerFormLibray {
@@ -350,10 +169,6 @@ namespace seeta {
     imagePickerVC.allowPickingVideo = NO;
     imagePickerVC.allowTakeVideo = NO;
     imagePickerVC.showPhotoCannotSelectLayer = YES;
-    
-//    imagePickerVC.allowCrop = YES;
-//    imagePickerVC.needCircleCrop = YES;
-    
     imagePickerVC.cannotSelectLayerColor = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
     imagePickerVC.oKButtonTitleColorNormal = [UIColor whiteColor];
     imagePickerVC.oKButtonTitleColorDisabled = [UIColor whiteColor];
@@ -373,33 +188,7 @@ namespace seeta {
 - (void)selectedImage:(UIImage *)photos {
     [self.showImage setImage:photos forState:UIControlStateNormal];
     self.IdcardImage = photos;
-    cv::Mat mat = [self cvMatFromUIImage:self.IdcardImage];
-    [self IdCardDetect:mat];
 }
--(cv::Mat)cvMatFromUIImage:(UIImage *)image {
-    
-     
-//    UIImage* MatToUIImage(const cv::Mat& image);
-//    void UIImageToMat(const UIImage* image,
-//                             cv::Mat& m, bool alphaExist = false);
-    
-    
-//    cv::Mat cvimg = [self CVMat:image];
-    std::string *filePath = [self getImagePath:image];
-    
-    cv::Mat cvImg = cv::imread(filePath->c_str());
-    
-//    cv::Mat cvImg = cv::imread(img_path);
-
-    cv::Mat imgCopy = cv::Mat(cvImg.rows,cvImg.cols,cvImg.depth());
-    transpose(cvImg, imgCopy);
-    flip(imgCopy, imgCopy, 0);  //rotate 90
-    UIImageToMat(image, cvImg);
-
-    UIImage *image222 =MatToUIImage(imgCopy);
-    return  imgCopy;
-}
-
 //获取照片进行本地转换
 - (std::string *)getImagePath:(UIImage *)image {
     
@@ -415,21 +204,7 @@ namespace seeta {
     
     return pathss;
 }
-- (void)IdCardDetect:(cv::Mat)cvimag {
-        struct SeetaImageData img;
-        img.height = cvimag.rows;
-        img.width = cvimag.cols;
-        img.channels = cvimag.channels();
-        img.data = cvimag.data;
-//    auto faces = FDs.detect_v2(img);
-    self.model = [[SeetaImageModel alloc]init];
-    self.model.height = img.height;
-    self.model.width = img.width;
-    self.model.channels = img.channels;
 
-
-    NSLog(@"demp");
-}
 int getLen(const unsigned char s[])
 {
 int nLen = 0;
@@ -470,54 +245,14 @@ return nLen;
     float c = b/sum.count;
     return  c;
 }
-//-(float)simarity:(UIImage *)image {
-//    //    cv::Mat cvImage;
-//    //    UIImageToMat(image, cvImage);
-//    //    cv::cvConvert(cvImage, CV_32FC3);
-//    
-//    //MARK: 描述-人脸对比
-//    auto cvImg = cv::imread(img_path);
-//    auto cvimg = [self cvMatFromUIImage:image];
-//    SeetaImageData img;
-//    img.height = cvimg.rows;
-//    img.width = cvimg.cols;
-//    img.channels = cvimg.channels();
-//    img.data = cvimg.data;
-//    SeetaImageData ImgIdCard;
-//    ImgIdCard.height = cvImg.rows;
-//    ImgIdCard.width =cvImg.cols;
-//    ImgIdCard.channels = cvImg.channels();
-//    ImgIdCard.data = cvImg.data;
-//    auto faceComapres = FD.detect_v2(img);
-//    auto faceIdcards = FD.detect_v2(ImgIdCard);
-//    if (faceComapres.size() == 0 || faceIdcards.size() == 0) {
-//        return 0.0;
-//    }
-//    
-//    auto faceCompare = faceComapres[0];
-//    auto faceIdCard = faceIdcards[0];
-//    auto pointCompare = FL.mark(img, faceCompare.pos);
-//    auto pointIdCard = FL.mark(ImgIdCard, faceIdCard.pos);
-//    std::unique_ptr<float[]> featureCompare(new float[FR.GetExtractFeatureSize()]);
-//    std::unique_ptr<float[]> featureIdcard(new float[FR.GetExtractFeatureSize()]);
-//    
-//    FR.Extract(img, pointCompare.data(), featureCompare.get());
-//    FR.Extract(ImgIdCard, pointIdCard.data(), featureIdcard.get());
-//    
-//    std::shared_ptr<float> featurecompare = extract(&FR, img, pointCompare);
-//    std::shared_ptr<float> featureIdCard = extract(&FR, ImgIdCard, pointIdCard);
-//    
-//    float simalityFl = FR.CalculateSimilarity(featureIdCard.get(), featurecompare.get());
-//    
-//    return simalityFl;
-//}
+
 
 - (void)p_setUpUI {
     [self.view addSubview:self.uploadImageButton];
     [self.view addSubview:self.detailDataButton];
     [self.view addSubview:self.showPassLab];
     [self.view addSubview:self.showImage];
-    [self.view addSubview:self.backShowImage];
+//    [self.view addSubview:self.backShowImage];
     [self.view addSubview:self.IdCardInfoButton];
     [self add_Masrony];
 }
@@ -552,14 +287,14 @@ return nLen;
         make.left.mas_offset(12);
         make.right.mas_offset(-12);
         make.top.mas_offset(100);
-        make.height.mas_equalTo(92);
+        make.height.mas_equalTo(180);
     }];
-    [self.backShowImage mas_makeConstraints:^(MASConstraintMaker *make){
-        make.left.mas_offset(12);
-        make.right.mas_offset(-12);
-        make.top.equalTo(self.showImage.mas_bottom).offset(12);
-        make.height.mas_equalTo(92);
-    }];
+//    [self.backShowImage mas_makeConstraints:^(MASConstraintMaker *make){
+//        make.left.mas_offset(12);
+//        make.right.mas_offset(-12);
+//        make.top.equalTo(self.showImage.mas_bottom).offset(12);
+//        make.height.mas_equalTo(92);
+//    }];
 
 }
 //MARK: 描述 - event
@@ -568,9 +303,6 @@ return nLen;
 }
 
 - (void)didClickIt {
-        //MARK: 描述
-//        struct SeetaImageData IdCardImg02;
-//        [self.IdcardSeetaData getValue:& IdCardImg02];
     if (self.IdcardImage) {
         self.vc.IdCardImg = self.IdcardImage;
         [self.navigationController pushViewController:self.vc animated:NO];
@@ -631,16 +363,16 @@ return nLen;
     }
     return  _showImage;
 }
-- (UIButton *)backShowImage {
-    if (!_backShowImage) {
-        _backShowImage = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_backShowImage setTitle:@"上传身份证背面" forState:UIControlStateNormal];
-        _backShowImage.backgroundColor = [UIColor grayColor];
-        _backShowImage.layer.cornerRadius = 12;
-        [_backShowImage setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    }
-    return  _backShowImage;
-}
+//- (UIButton *)backShowImage {
+//    if (!_backShowImage) {
+//        _backShowImage = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [_backShowImage setTitle:@"上传身份证背面" forState:UIControlStateNormal];
+//        _backShowImage.backgroundColor = [UIColor grayColor];
+//        _backShowImage.layer.cornerRadius = 12;
+//        [_backShowImage setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    }
+//    return  _backShowImage;
+//}
 - (UIButton *)IdCardInfoButton {
     if (!_IdCardInfoButton) {
         _IdCardInfoButton = [UIButton buttonWithType:UIButtonTypeCustom];

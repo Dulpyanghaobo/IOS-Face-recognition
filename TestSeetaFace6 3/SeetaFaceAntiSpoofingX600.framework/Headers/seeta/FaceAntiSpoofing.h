@@ -57,7 +57,7 @@ namespace seeta
             * \param [in] face Ҫʶ�������λ��
             * \param [in] points Ҫʶ�������������
             * \return ����״̬ @see Status
-            * \note �˺�����֧�ֶ��̵߳��ã��ڶ��̻߳�������Ҫ������Ӧ�� FaceAntiSpoofing �Ķ���ֱ���ü�⺯��
+             * \note �˺�����֧�ֶ��̵߳��ã��ڶ��̻߳�������Ҫ������Ӧ�*� FaceAntiSpoofing �Ķ���ֱ���ü�⺯��
             * \note ��Ҫ��������֡���У�����Ҫ������һ����Ƶ�ǣ���Ҫ���� ResetVideo ���ü��״̬
             * \note ��ǰ�汾���ܷ��� REAL, SPOOF, DETECTION
             * \see SeetaImageData, SeetaRect, PointF, Status

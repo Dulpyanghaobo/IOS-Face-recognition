@@ -24,6 +24,7 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/highgui/ios.h>
+
 #import <AVFoundation/AVFoundation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "UIAlertController+Extend.h"
@@ -56,12 +57,13 @@ seeta::ModelSetting FL_model(buddle + "/assert/model/face_landmarker_pts5.csta")
 seeta::ModelSetting FR_model(buddle + "/assert/model/face_recognizer_light.csta");
 //    活体检验
 seeta::ModelSetting FA_model(buddle + "/assert/model/fas_first.csta");
+
 //人脸检测器
 seeta::FaceDetector FD(FD_model);
 seeta::FaceLandmarker FL(FL_model);
 seeta::FaceRecognizer FR(FR_model);
 seeta::FaceAntiSpoofing FA(FA_model);
-
+std::shared_ptr<float> featureIdCardWithFace;
 std::shared_ptr<float> extract(
                                seeta::FaceRecognizer *fr,
                                const SeetaImageData &image,
@@ -72,25 +74,6 @@ std::shared_ptr<float> extract(
     fr->Extract(image, points.data(), features.get());
     return features;
 }
-
-class PipeStream {
-public:
-    PipeStream() {}
-    
-    const std::string str() const {
-        return oss.str();
-    }
-    
-    template <typename T>
-    PipeStream &operator << (T &&t) {
-        oss << std::forward<T>(t);
-        return *this;
-    }
-private:
-    std::ostringstream oss;
-};
-SeetaImageData IdCardImg;
-
 //MARK: 描述:活体检测 -antiSpoof
 //创建活体检测对象
 
@@ -120,11 +103,6 @@ SeetaImageData IdCardImg;
 
 @property (nonatomic,strong) NSMutableArray *sum;
 
-
-/** 相似度*/
-
-@property (nonatomic, assign) float smailry;
-
 /** 单次识别率在0.6以上*/
 @property (nonatomic, assign) float singleSmailty;
 /** 是否通过验证*/
@@ -137,42 +115,89 @@ SeetaImageData IdCardImg;
 // 人脸检测框区域
 @property (nonatomic,assign) CGRect faceDetectionFrame;
 
-@property (nonatomic, assign) float simmarly;
-
+//@property (nonatomic, assign) float simmarly;
+@property (nonatomic,strong) NSTimer *timer;
 @end
 
 @implementation OpencvCameraViewController
+/** SeetaImageData转换 **/
+STD_API(SeetaImageData) EXCARDS_RecoUnsignedCharData( int nWidth, int nHeight,int channels,unsigned char *ImageData) {
+    SeetaImageData img;
+    img.height = nHeight;
+    img.width = nWidth;
+    img.channels = channels;
+    img.data = ImageData;
+    return img;
+}
+/** 获取人脸特征进行相似度对比*/
+- (std::shared_ptr<float>) EXCARDS_feature:(cv::Mat) cvimage{
+    SeetaImageData cvimg = EXCARDS_RecoUnsignedCharData(cvimage.cols, cvimage.rows,cvimage.channels(),cvimage.data);
+    auto faces = FD.detect_v2(cvimg);
+    if (faces.empty()) {
+        NSLog(@"未检测到人脸");
+    }
+    auto face = faces[0];
+    auto facePos = face.pos;
+    auto points = FL.mark(cvimg, facePos);
+    std::shared_ptr<float> feature = extract(&FR, cvimg, points);
+    featureIdCardWithFace = feature;
+    return feature;
+}
+//MARK: 描述 对图像通道进行处理，seetaimagdata只能识别通道数为3的图像
+- (cv::Mat)convertTo3Channels:(cv::Mat &)cvimg {
+    cv::Mat three_channel = cv::Mat::zeros(cvimg.rows,cvimg.cols,CV_8UC3);
+    cv::vector<cv::Mat> channels;
+    cv::split(cvimg, channels);
+    if (channels.size() <= 3) {
+        return cvimg;
+    }
+    cv::Mat channel1 = channels.at(0);
+    cv::Mat channel2 = channels.at(1);
+    cv::Mat channel3 = channels.at(2);
+    cv::vector<cv::Mat> newChannels;
+    newChannels = {channel1,channel2,channel3};
+    cv::merge(newChannels, three_channel);
+    return three_channel;
+}
+//MARK: 描述 将身份证UIImage转换成cv::mat
+- (cv::Mat)imageToCVMat:(UIImage *)image {
+    cv::Mat cvimg;
+    UIImageToMat(image, cvimg);
+    cv::Mat imgCopy = cv::Mat(cvimg.rows,cvimg.cols,cvimg.depth());
+    transpose(cvimg, imgCopy);
+    flip(imgCopy,imgCopy,1);
+    cv::Mat cvImg_channels = [self convertTo3Channels:cvimg];
+    return cvImg_channels;
+}
 
+/** 对原图像进行压缩*/
+- (cv::Mat)OpencvOrientImageCompression:(cv::Mat)OrientCvImage {
+    return OrientCvImage;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     // 添加关闭按钮
     [self addCloseButton];
-    // 添加预览图层
-
+    // 添加计时器(如果10秒内没有检测出结果则退出)
+    self.timer = [[NSTimer alloc]init];
+    self.timer = [NSTimer timerWithTimeInterval:15.0 target:self selector:@selector(back) userInfo:nil repeats:YES];
+       
+    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
+    /** 添加PreviewLayer*/
     [self.view.layer addSublayer:self.videoPreviewLayer];
 
     // 添加rightBarButtonItem为打开／关闭手电筒
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:nil style:UIBarButtonItemStylePlain target:self action:@selector(turnOnOrOffTorch)];
 }
-
-#pragma mark - event
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
-    //大于6大概率是同一个人
-    if ((object == self && self.smailry > 4.0) || (object == self && self.singleSmailty >0.6)) {
-        self.isPassVerify = YES;
-        
-    }
-}
-//计算相似度
-- (void)compateFloat {
-    __block float b = 0.0;
+- (void)back {
+    [self.timer invalidate];
+    self.timer = nil;
+    NSLog(@"未识别成功");
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.navigationController popViewControllerAnimated:YES];
+    });
     
-    [self.sum enumerateObjectsUsingBlock:^(NSNumber * _Nonnull num ,NSUInteger idx,BOOL * _Nonnull stop){
-        float a = [num floatValue];
-        b += a;
-    }];
-    self.smailry = b/self.sum.count;
 }
 
 #pragma mark previewLayer
@@ -199,7 +224,7 @@ SeetaImageData IdCardImg;
 }
 #pragma mark - AVCaptureMetadataOutputObjectsDelegate
 #pragma mark 从输出的元数据中捕捉人脸
-// 检测人脸是为了获得“人脸区域”，做“人脸区域”与“身份证人像框”的区域对比，当前者在后者范围内的时候，才能截取到完整的身份证图像
+// 检测人脸是为了获得“人脸区域”，做“人脸区域”的区域对比
 -(void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection{
     if (metadataObjects.count) {
         AVMetadataMachineReadableCodeObject *metadataObject = metadataObjects.firstObject;
@@ -229,142 +254,147 @@ SeetaImageData IdCardImg;
             if (self.mCaptureDeviceOutput.sampleBufferDelegate) {
                 [self.mCaptureDeviceOutput setSampleBufferDelegate:nil queue:self.mProcessQueue];
             }
-            NSLog(@"captureOutput");
         }
-        
     } else {
         NSLog(@"输出格式不支持");
     }
     }
+- (cv::Mat)faceImageToCVMat:(UIImage *)img {
+    cv::Mat cvimg;
+    UIImageToMat(img, cvimg);
+//           转换图像通道
+    cv::Mat cvImg_channels = [self convertTo3Channels:cvimg];
+    cv::Mat imgCopy = cv::Mat(cvimg.rows,cvimg.cols,cvimg.depth());
+    transpose(cvImg_channels, imgCopy);
+    flip(imgCopy,imgCopy,1);
+    return imgCopy;
+}
 - (void)faceRecongnit:(CVImageBufferRef)imageBuffer {
-
+//保留相同的Core Video缓冲区
     CVBufferRetain(imageBuffer);
+//    锁住像素缓冲区
         if (CVPixelBufferLockBaseAddress(imageBuffer, 0) == kCVReturnSuccess) {
-            //2.获取捕捉视频的宽和高
-            UIImage *image = [self sampleBufferToImage:imageBuffer];
-            auto cvimage = [self cvMatFromUIImage:image];
-            [self doRotationOperation:cvimage];
+            UIImage *imgs = [self sampleBufferToImage:imageBuffer];
+            cv::Mat cvimg;
+            UIImageToMat(imgs, cvimg);
+//           转换图像通道
+            cv::Mat cvImg_channels = [self convertTo3Channels:cvimg];
+            cv::Mat imgCopy = cv::Mat(cvimg.rows,cvimg.cols,cvimg.depth());
+            transpose(cvImg_channels, imgCopy);
+            flip(imgCopy,imgCopy,1);
+//            cv::Mat imgCopy = [self faceImageToCVMat:imgs];
+//            进行活体检测
+            SeetaImageData img;
+            img.width = imgCopy.cols;
+            img.height = imgCopy.rows;
+            img.channels = imgCopy.channels();
+            img.data = imgCopy.data;
+            auto faces = FD.detect_v2(img);
+            if (faces.empty()) {
+                //    解锁像素缓冲区
+                CVPixelBufferUnlockBaseAddress(imageBuffer, 0);
+            //    释放缓冲区
+                CVBufferRelease(imageBuffer);
+                return;
+            }
+            auto face = faces[0];
+            auto facePos = face.pos;
+            auto points = FL.mark(img, facePos);
+            auto status = FA.PredictVideo(img, facePos, points.data());
+            switch (status) {
+                    case seeta::FaceAntiSpoofing::Status::REAL:
+                    /** 真脸*/
+                        self.spoofStatus = FaceVerifyAnitSpoofStatusReal;
+                    NSLog(@"真脸");
+                        break;
+                    case seeta::FaceAntiSpoofing::Status::FUZZY:
+                    /** 模糊不清*/
+                        self.spoofStatus = FaceVerifyAnitSpoofStatusUnVerify;
+                    NSLog(@"模糊不清");
+                        break;
+                    case seeta::FaceAntiSpoofing::Status::SPOOF:
+                /** 假脸*/
+                    self.spoofStatus = FaceVerifyAnitSpoofStatusFake;
+                    NSLog(@"为假脸");
+                    break;
+                    case seeta::FaceAntiSpoofing::Status::DETECTING:
+                    /** 正在检测*/
+                    NSLog(@"正在检测");
+                    self.spoofStatus = FaceVerifyAnitSpoofStatusDetecting;
+                        break;
+                    default:
+                        break;
+                }
+            if (self.spoofStatus == FaceVerifyAnitSpoofStatusFake) {
+                [self doRotationOperation:imgCopy];
+                //    解锁像素缓冲区
+                CVPixelBufferUnlockBaseAddress(imageBuffer, 0);
+            //    释放缓冲区
+                CVBufferRelease(imageBuffer);
+                return;
+            }
+            
+            [self doRotationOperation:imgCopy];
         }
+    //    解锁像素缓冲区
     CVPixelBufferUnlockBaseAddress(imageBuffer, 0);
+//    释放缓冲区
     CVBufferRelease(imageBuffer);
 
-//
-//    // Lock the image buffer
-//    if (CVPixelBufferLockBaseAddress(imageBuffer, 0) == kCVReturnSuccess) {
-//        // Get information about the image
-//        size_t width= CVPixelBufferGetWidth(imageBuffer);// 1920
-//        size_t height = CVPixelBufferGetHeight(imageBuffer);// 1080
-//
-//        NSMutableArray *planeListData = [NSMutableArray array];
-//        const Boolean isPlanar = CVPixelBufferIsPlanar(imageBuffer);
-//        size_t planeCount;
-////        if (isPlanar) {
-////                planeCount = CVPixelBufferGetPlaneCount(imageBuffer);
-////              } else {
-////                planeCount = 1;
-////              }
-////        for (int i = 0; i < planeCount; i++) {
-////          void *planeAddress;
-////          size_t bytesPerRow;
-////          size_t height;
-////          size_t width;
-////
-//////          if (isPlanar) {
-//////            planeAddress = CVPixelBufferGetBaseAddressOfPlane(imageBuffer, i);
-//////            bytesPerRow = CVPixelBufferGetBytesPerRowOfPlane(imageBuffer, i);
-//////            height = CVPixelBufferGetHeightOfPlane(imageBuffer, i);
-//////            width = CVPixelBufferGetWidthOfPlane(imageBuffer, i);
-//////          } else {
-//////            planeAddress = CVPixelBufferGetBaseAddress(imageBuffer);
-//////            bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
-//////            height = CVPixelBufferGetHeight(imageBuffer);
-//////            width = CVPixelBufferGetWidth(imageBuffer);
-//////          }
-////            NSNumber *length = @(bytesPerRow * height);
-////                    NSData *bytes = [NSData dataWithBytes:planeAddress length:length.unsignedIntegerValue];
-////            NSMutableDictionary *planeBuffer = [NSMutableDictionary dictionary];
-////                    planeBuffer[@"bytesPerRow"] = @(bytesPerRow);
-////                    planeBuffer[@"width"] = @(width);
-////                    planeBuffer[@"height"] = @(height);
-////                    planeBuffer[@"bytes"] = bytes;
-////
-////                    [planeListData addObject:planeBuffer];
-////                  }
-////        NSMutableDictionary *imageBufferRef = [NSMutableDictionary dictionary];
-////        imageBufferRef[@"width"] = [NSNumber numberWithUnsignedLong:width];
-////        imageBufferRef[@"height"] = [NSNumber numberWithUnsignedLong:height];
-//////              imageBuffer[@"format"] = @(videoFormat);
-////        imageBufferRef[@"planeListData"] = planeListData;
-//
-//    }
-//    CVPixelBufferUnlockBaseAddress(imageBuffer, kCVPixelBufferLock_ReadOnly);
+}
 
-}
-//        CVPlanarPixelBufferInfo_YCbCrBiPlanar *planar = CVPixelBufferGetBaseAddress(imageBuffer);
-//        CVPlanarPixelBufferInfo_YCbCrBiPlanar *planar = (CVPlanarPixelBufferInfo_YCbCrBiPlanar *)CVPixelBufferGetBaseAddress(imageBuffer);
-//        size_t offset = NSSwapBigIntToHost(planar->componentInfoY.offset);
-//        size_t rowBytes = NSSwapBigIntToHost(planar->componentInfoY.rowBytes);
-//        unsigned char* baseAddress = (unsigned char *)CVPixelBufferGetBaseAddress(imageBuffer);
-//        unsigned char* pixelAddress = baseAddress + offset;
-//        cv::Mat mat(width,height,CV_8UC4,pixelAddress);
-//        cv::Mat cvimg;
-//        if (!mat.empty()) {
-//            cvimg = mat.clone();
-//        }
-//        NSLog(@"demo");
-//
-//
-//            }
-//    CVPixelBufferUnlockBaseAddress(imageBuffer, 0);
-//    CVBufferRelease(imageBuffer);
-    
 
-//    //2.获取捕捉视频的宽和高
-//    UIImage *image = [self sampleBufferToImage:sampleBuffer];
-////    dispatch_queue_t concurrent_queue = dispatch_queue_create("DanCONCURRENT", DISPATCH_QUEUE_CONCURRENT);
-////
-////    dispatch_async(concurrent_queue, ^{
-//        auto cvimage = [self cvMatFromUIImage:image];
-//        [self doRotationOperation:cvimage];
-//        }
--(cv::Mat)cvMatFromUIImage:(UIImage *)image {
-//    cv::Mat cvimg = [self CVMat:image];
-    std::string *filePath = [self getImagePath:image];
-    cv::Mat cvImg = cv::imread(filePath->c_str());
-    return  cvImg;
-}
-//获取照片进行本地转换
-- (std::string *)getImagePath:(UIImage *)image {
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-    NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"/1.png"];   // 保存文件的名称
-    BOOL result = [UIImagePNGRepresentation(image) writeToFile: filePath atomically:YES]; // 保存成功会返回YES
-    if (result) {
-        NSLog(@"保存成功");
-    }else{
-        NSLog(@"保存失败");
-    }
-    std::string *pathss =new std::string([filePath UTF8String]);
-    
-    return pathss;
-}
 
 - (void)doRotationOperation:(cv::Mat)image {
-    [self convertMatTo:image];
-    
+    SeetaImageData faceImg;
+    faceImg.width = image.cols;
+    faceImg.height = image.rows;
+    faceImg.channels = image.channels();
+    faceImg.data = image.data;
+    if (image.channels()!= 3) {
+        return;
+    }
+    auto faces = FD.detect_v2(faceImg);
+    auto face = faces[0];
+    auto facePos = face.pos;
+    auto pointFace = FL.mark(faceImg, facePos);
+    cv::Mat cvimg = [self cvMatFromUIImageIdCard:self.IdCardImg];
+    std::shared_ptr<float> featureIdCard = featureIdCardWithFace;
+    std::shared_ptr<float> featurecompare = extract(&FR, faceImg, pointFace);
+    float simalityFl = FR.CalculateSimilarity(featurecompare.get(), featureIdCard.get());
+    NSLog(@"%f",simalityFl);
+    [self.sum addObject:@(simalityFl)];
+//    self.simmarly = [self complaeteFloat:self.sum];
+    if (self.spoofStatus == FaceVerifyAnitSpoofStatusReal) {
+        BOOL isPassVerify = [self isPassVerifyDetectAndSpoof:simalityFl];
+        if ([self.mCaptureSession isRunning]) {
+            [self.mCaptureSession stopRunning];
+        }
+        if (self.SelectedCallBack) {
+            self.SelectedCallBack(isPassVerify);
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+    }else if (self.spoofStatus == FaceVerifyAnitSpoofStatusFake){
+        BOOL isPassVerify = [self isPassVerifyDetectAndSpoof:simalityFl];
+        if ([self.mCaptureSession isRunning]) {
+            [self.mCaptureSession stopRunning];
+        }
+        if (self.SelectedCallBack) {
+            self.SelectedCallBack(isPassVerify);
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+    }
 }
 
-//将mat数据转化SeetaImageData
-- (void)convertMatTo:(cv::Mat)image {
-    SeetaImageData img;
-    img.width = image.cols;
-    img.height = image.rows;
-    img.channels = image.channels();
-    img.data = image.data;
-    auto faces = FD.detect_v2(img);
-    NSValue *value = [NSValue valueWithBytes:& img objCType:@encode(SeetaImageData)];
-    [self getFaceLocation:value];
-}
+
+
+
+
+
 //获取人脸位点与关键点
 - (void)getFaceLocation:(NSValue *)imageValue {
     SeetaImageData img;
@@ -375,61 +405,9 @@ SeetaImageData IdCardImg;
     if (faces.empty()) {
             return;
     }
-    SeetaFaceInfo face = faces[0];
-    auto facePos = face.pos;
-
-    NSValue *facePosValue = [NSValue valueWithBytes:& facePos objCType:@encode(SeetaRect)];
-    
-//    dispatch_queue_t concurrent_queue = dispatch_queue_create("DanCONCURRENT", DISPATCH_QUEUE_CONCURRENT);
-//    dispatch_async(concurrent_queue, ^{
-    [self antiSpoofDetect:imageValue facePosValue:facePosValue];
-    [self checkFaceToIdCard:imageValue facePosValue:facePosValue];
-//    });
 
 }
 
-//人脸对比 将人脸与身份证照片进行对比
-- (void)checkFaceToIdCard:(NSValue *)imageValue facePosValue:(NSValue *)facePosValue
-{
-    SeetaImageData img;
-    SeetaRect facePos;
-    [imageValue getValue:& img];
-    [facePosValue getValue:& facePos];
-    cv::Mat cvImage;
-    cvImage = [self cvMatFromUIImageIdCard:self.IdCardImg];
-    SeetaImageData IdCardImg;
-    IdCardImg.width = cvImage.cols;
-    IdCardImg.height = cvImage.rows;
-    IdCardImg.channels = cvImage.channels();
-    IdCardImg.data = cvImage.data;
-
-
-    auto IdCardfaces = FD.detect_v2(IdCardImg);
-    if (IdCardfaces.empty()) {
-            return;
-    }
-    SeetaFaceInfo IdCardface = IdCardfaces[0];
-    auto IdCardfacePos = IdCardface.pos;
-    auto points = FL.mark(img, facePos);
-    auto IdCardpoint = FL.mark(IdCardImg, IdCardfacePos);
-    
-    std::shared_ptr<float> featurecompare = extract(&FR, img, points);
-    std::shared_ptr<float> featureIdCard = extract(&FR, IdCardImg, IdCardpoint);
-    float simalityFl = FR.CalculateSimilarity(featurecompare.get(), featureIdCard.get());
-    [self.sum addObject:@(simalityFl)];
-    self.simmarly = [self complaeteFloat:self.sum];
-    if (self.spoofStatus == FaceVerifyAnitSpoofStatusReal) {
-        BOOL isPassVerify = [self isPassVerifyDetectAndSpoof];
-        if (self.SelectedCallBack) {
-            self.SelectedCallBack(isPassVerify);
-        }
-    }else if (self.spoofStatus == FaceVerifyAnitSpoofStatusFake){
-        BOOL isPassVerify = [self isPassVerifyDetectAndSpoof];
-        if (self.SelectedCallBack) {
-            self.SelectedCallBack(isPassVerify);
-        }
-    }
-}
 - (float)complaeteFloat:(NSMutableArray *)sum {
     __block float b = 0.0;
     [sum enumerateObjectsUsingBlock:^(NSNumber * _Nonnull num ,NSUInteger idx,BOOL * _Nonnull stop){
@@ -437,62 +415,8 @@ SeetaImageData IdCardImg;
         b += a;
     }];
     float c = b/sum.count;
+    NSLog(@"%f",c);
     return  c;
-}
-
-//活体检测
-- (void)antiSpoofDetect:(NSValue *)imageValue facePosValue:(NSValue *)facePosValue
-{
-    SeetaImageData img;
-    SeetaRect facePos;
-    [imageValue getValue:& img];
-    [facePosValue getValue:& facePos];
-    auto points = FL.mark(img, facePos);
-    auto status = FA.PredictVideo(img, facePos, points.data());
-    PipeStream pipe;
-    switch (status) {
-            case seeta::FaceAntiSpoofing::Status::REAL:
-            /** 真脸*/
-                self.spoofStatus = FaceVerifyAnitSpoofStatusReal;
-                break;
-            case seeta::FaceAntiSpoofing::Status::SPOOF:
-            /** 假脸*/
-                self.spoofStatus = FaceVerifyAnitSpoofStatusFake;
-                break;
-            case seeta::FaceAntiSpoofing::Status::FUZZY:
-            /** 模糊不清*/
-                self.spoofStatus = FaceVerifyAnitSpoofStatusUnVerify;
-                break;
-            case seeta::FaceAntiSpoofing::Status::DETECTING:
-            /** 正在检测*/
-            self.spoofStatus = FaceVerifyAnitSpoofStatusDetecting;
-                break;
-            default:
-                break;
-        }
-    if (self.spoofStatus == FaceVerifyAnitSpoofStatusReal) {
-        BOOL isPassVerify = [self isPassVerifyDetectAndSpoof];
-        if (self.SelectedCallBack) {
-            self.SelectedCallBack(isPassVerify);
-        }
-        if ([self.mCaptureSession isRunning]) {
-            [self.mCaptureSession stopRunning];
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.navigationController popViewControllerAnimated:YES];
-        });
-    }else if (self.spoofStatus == FaceVerifyAnitSpoofStatusFake){
-        BOOL isPassVerify = [self isPassVerifyDetectAndSpoof];
-        if (self.SelectedCallBack) {
-            self.SelectedCallBack(isPassVerify);
-        }
-        if ([self.mCaptureSession isRunning]) {
-            [self.mCaptureSession stopRunning];
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.navigationController popViewControllerAnimated:YES];
-        });
-    }
 }
 
 -(void)alertControllerWithTitle:(NSString *)title message:(NSString *)message okAction:(UIAlertAction *)okAction cancelAction:(UIAlertAction *)cancelAction {
@@ -509,8 +433,9 @@ SeetaImageData IdCardImg;
     CGImageRef videoImage = [temporaryContext createCGImage:ciImage fromRect:CGRectMake(0, 0, CVPixelBufferGetWidth(imageBuffer), CVPixelBufferGetHeight(imageBuffer))];
     UIImage *result = [[UIImage alloc] initWithCGImage:videoImage scale:1.0 orientation:UIImageOrientationLeftMirrored];
     CGImageRelease(videoImage);
-    
-    return result;
+    NSData *data = UIImagePNGRepresentation(result);
+    UIImage *image = [[UIImage alloc]initWithData:data];
+    return image;
     
 }
 - (NSMutableArray *)sum {
@@ -665,7 +590,8 @@ SeetaImageData IdCardImg;
 #pragma mark - view即将出现时
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
+    cv::Mat mat = [self cvMatFromUIImageIdCard:self.IdCardImg];
+    [self EXCARDS_feature:mat];
     // 将AVCaptureViewController的navigationBar调为透明
     [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:0];
     [self checkAuthorizationStatus];
@@ -736,11 +662,10 @@ SeetaImageData IdCardImg;
     [self.view addSubview:closeBtn];
 }
 //MARK: 描述 - 判断结果
--(BOOL)isPassVerifyDetectAndSpoof {
-    if (self.simmarly>0.1 &&self.spoofStatus == FaceVerifyAnitSpoofStatusReal) {
+-(BOOL)isPassVerifyDetectAndSpoof:(float)samiltay {
+//    if (samiltay > 0.25 && self.spoofStatus == FaceVerifyAnitSpoofStatusReal) {
+    if (samiltay > 0.28) {
         return true;
-    }else if (self.spoofStatus == FaceVerifyAnitSpoofStatusFake) {
-        return false;
     }else {
         return false;
     }
@@ -750,14 +675,8 @@ SeetaImageData IdCardImg;
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(cv::Mat)cvMatFromUIImageIdCard:(UIImage *)image {
-    std::string *filePath = [self getImagePathIdCard:image];
-    cv::Mat cvImg = cv::imread(filePath->c_str());
-    
-    cv::Mat imgCopy = cv::Mat(cvImg.rows,cvImg.cols,cvImg.depth());
-    transpose(cvImg, imgCopy);
-    flip(imgCopy, imgCopy, 0);  //rotate 90
-    UIImageToMat(image, cvImg);
-    return  imgCopy;
+    cv::Mat cvImg = [self imageToCVMat:image];
+    return  cvImg;
 }
 //获取照片进行本地转换
 - (std::string *)getImagePathIdCard:(UIImage *)image {
@@ -774,4 +693,5 @@ SeetaImageData IdCardImg;
     
     return pathss;
 }
+
 @end

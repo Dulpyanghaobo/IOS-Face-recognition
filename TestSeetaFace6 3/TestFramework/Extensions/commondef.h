@@ -1,27 +1,17 @@
-/************************************************************************/
-/* copyright                                                            */
-/* version 1.1    修改TPoint  TRect 的数据类型为int                     */
-/************************************************************************/
 #ifndef __COMMON_DEF_H__
 #define __COMMON_DEF_H__
 
-//////////////////////////////////////////////////////////////////////////
-/* 平台相关的一些定义 */
-/** 调用方式约定 */
 #if (defined WIN32 || defined WIN64)
-//-----------windows-----------------------------
-    #define STD_CDECL   __cdecl         //C调用约定
-    #define STD_STDCALL __stdcall       //pascall调用约定
+    #define STD_CDECL   __cdecl
+    #define STD_STDCALL __stdcall
     #define STD_EXPORTS __declspec(dllexport)
     #define STD_WINAPI  __stdcall 
 #else
-//-----------linux-------------------------------
     #define STD_CDECL
     #define STD_STDCALL
     #define STD_EXPORTS __attribute__ ((visibility("default")))
 #endif
 
-/* 导出方式定义 */
 #ifndef STD_EXTERN_C
     #ifdef __cplusplus
         #define STD_EXTERN_C  extern "C"
@@ -30,21 +20,16 @@
     #endif
 #endif
 
-/* 接口定义:采用标准的C调用约定 */
 #ifndef STD_API
     #define STD_API(rettype) STD_EXTERN_C STD_EXPORTS rettype STD_CDECL
-	/* 接口实现:采用标准的C调用约定 */
 	#define STD_IMPL STD_EXTERN_C STD_EXPORTS
 #endif
-/* C++接口定义 */
 #ifndef CPP_API
 	#define CPP_API(rettype) STD_EXPORTS rettype STD_CDECL
 	#define CPP_IMPL STD_EXPORTS
 #endif
 
 //////////////////////////////////////////////////////////////////////////
-//常用定义宏
-/* MIN, MAX, ABS */
 #define ZMIN(a, b)	((a)>(b) ? (b) : (a))
 #define ZMAX(a, b)	((a)<(b) ? (b) : (a))
 #define ZABS(a)		((a) < 0 ? (-(a)) : a)
