@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0424795D256CDB6A00B769C9 /* IDInfoViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0424795C256CDB6A00B769C9 /* IDInfoViewControllers.m */; };
+		042479A6256F9C2200B769C9 /* testImageViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 042479A5256F9C2200B769C9 /* testImageViewController.mm */; };
+		042479A9256FA99F00B769C9 /* TestResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042479A8256FA99F00B769C9 /* TestResultView.m */; };
 		0430D387256265DF00F74073 /* SeetaFaceTracking600.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0430D386256265DF00F74073 /* SeetaFaceTracking600.framework */; };
 		04549F8825651CD700CF99AB /* UIImage+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 04549F8725651CD700CF99AB /* UIImage+Add.m */; };
 		04549F8B2565FB4300CF99AB /* OpencvCameraViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 04549F8A2565FB4300CF99AB /* OpencvCameraViewController.mm */; };
@@ -18,6 +21,19 @@
 		04549FB42567679500CF99AB /* libexidcardios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04549FB32567679500CF99AB /* libexidcardios.a */; };
 		04549FBD2567C42D00CF99AB /* SeetaImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04549FBC2567C42C00CF99AB /* SeetaImageModel.m */; };
 		04AC3FC525639E7B005AA6F5 /* JunPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AC3FC425639E7B005AA6F5 /* JunPreviewView.m */; };
+		04B8BCED256CC6EA00FDACF6 /* IDInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B8BCDC256CC6EA00FDACF6 /* IDInfoViewController.xib */; };
+		04B8BCEE256CC6EA00FDACF6 /* IDInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B8BCDD256CC6EA00FDACF6 /* IDInfoViewController.m */; };
+		04B8BCEF256CC6EA00FDACF6 /* AVCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B8BCDE256CC6EA00FDACF6 /* AVCaptureViewController.m */; };
+		04B8BCF0256CC6EA00FDACF6 /* JQAVCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B8BCDF256CC6EA00FDACF6 /* JQAVCaptureViewController.m */; };
+		04B8BCF1256CC6EA00FDACF6 /* IDAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B8BCE0256CC6EA00FDACF6 /* IDAuthViewController.m */; };
+		04B8BCF2256CC6EA00FDACF6 /* IDAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B8BCE1256CC6EA00FDACF6 /* IDAuthViewController.xib */; };
+		04B8BCF3256CC6EA00FDACF6 /* IDInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B8BCE6256CC6EA00FDACF6 /* IDInfo.m */; };
+		04B8BCF4256CC6EA00FDACF6 /* JQIDCardScaningView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B8BCE9256CC6EA00FDACF6 /* JQIDCardScaningView.m */; };
+		04B8BCF5256CC6EA00FDACF6 /* LHSIDCardScaningView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B8BCEA256CC6EA00FDACF6 /* LHSIDCardScaningView.m */; };
+		04B8BD01256CC98A00FDACF6 /* libexidcardios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04B8BCF7256CC98A00FDACF6 /* libexidcardios.a */; };
+		04B8BD02256CC98A00FDACF6 /* zocr0.lib in Resources */ = {isa = PBXBuildFile; fileRef = 04B8BCF9256CC98A00FDACF6 /* zocr0.lib */; };
+		04B8BD03256CC98A00FDACF6 /* UIAlertController+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B8BCFE256CC98A00FDACF6 /* UIAlertController+Extend.m */; };
+		04B8BD04256CC98A00FDACF6 /* UIImage+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B8BCFF256CC98A00FDACF6 /* UIImage+Extend.m */; };
 		805681B078776CC791E8986C /* Pods_TestFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4603B053FC5A71E11CC415CE /* Pods_TestFramework.framework */; };
 		A4B2DE4F23C31D4C00F8F566 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B2DE4E23C31D4C00F8F566 /* AppDelegate.m */; };
 		A4B2DE5223C31D4C00F8F566 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B2DE5123C31D4C00F8F566 /* SceneDelegate.m */; };
@@ -99,6 +115,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0424795B256CDB6A00B769C9 /* IDInfoViewControllers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDInfoViewControllers.h; sourceTree = "<group>"; };
+		0424795C256CDB6A00B769C9 /* IDInfoViewControllers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IDInfoViewControllers.m; sourceTree = "<group>"; };
+		042479A4256F9C2200B769C9 /* testImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testImageViewController.h; sourceTree = "<group>"; };
+		042479A5256F9C2200B769C9 /* testImageViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testImageViewController.mm; sourceTree = "<group>"; };
+		042479A7256FA99F00B769C9 /* TestResultView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestResultView.h; sourceTree = "<group>"; };
+		042479A8256FA99F00B769C9 /* TestResultView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestResultView.m; sourceTree = "<group>"; };
 		0430D386256265DF00F74073 /* SeetaFaceTracking600.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeetaFaceTracking600.framework; sourceTree = "<group>"; };
 		04549F8625651CD700CF99AB /* UIImage+Add.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Add.h"; sourceTree = "<group>"; };
 		04549F8725651CD700CF99AB /* UIImage+Add.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Add.m"; sourceTree = "<group>"; };
@@ -120,6 +142,30 @@
 		04549FBC2567C42C00CF99AB /* SeetaImageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeetaImageModel.m; sourceTree = "<group>"; };
 		04AC3FC325639E7B005AA6F5 /* JunPreviewView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JunPreviewView.h; sourceTree = "<group>"; };
 		04AC3FC425639E7B005AA6F5 /* JunPreviewView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JunPreviewView.m; sourceTree = "<group>"; };
+		04B8BCDB256CC6EA00FDACF6 /* IDAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDAuthViewController.h; sourceTree = "<group>"; };
+		04B8BCDC256CC6EA00FDACF6 /* IDInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDInfoViewController.xib; sourceTree = "<group>"; };
+		04B8BCDD256CC6EA00FDACF6 /* IDInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDInfoViewController.m; sourceTree = "<group>"; };
+		04B8BCDE256CC6EA00FDACF6 /* AVCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCaptureViewController.m; sourceTree = "<group>"; };
+		04B8BCDF256CC6EA00FDACF6 /* JQAVCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JQAVCaptureViewController.m; sourceTree = "<group>"; };
+		04B8BCE0256CC6EA00FDACF6 /* IDAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDAuthViewController.m; sourceTree = "<group>"; };
+		04B8BCE1256CC6EA00FDACF6 /* IDAuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDAuthViewController.xib; sourceTree = "<group>"; };
+		04B8BCE2256CC6EA00FDACF6 /* AVCaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCaptureViewController.h; sourceTree = "<group>"; };
+		04B8BCE3256CC6EA00FDACF6 /* IDInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDInfoViewController.h; sourceTree = "<group>"; };
+		04B8BCE4256CC6EA00FDACF6 /* JQAVCaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JQAVCaptureViewController.h; sourceTree = "<group>"; };
+		04B8BCE6256CC6EA00FDACF6 /* IDInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDInfo.m; sourceTree = "<group>"; };
+		04B8BCE7256CC6EA00FDACF6 /* IDInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDInfo.h; sourceTree = "<group>"; };
+		04B8BCE9256CC6EA00FDACF6 /* JQIDCardScaningView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JQIDCardScaningView.m; sourceTree = "<group>"; };
+		04B8BCEA256CC6EA00FDACF6 /* LHSIDCardScaningView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHSIDCardScaningView.m; sourceTree = "<group>"; };
+		04B8BCEB256CC6EA00FDACF6 /* JQIDCardScaningView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JQIDCardScaningView.h; sourceTree = "<group>"; };
+		04B8BCEC256CC6EA00FDACF6 /* LHSIDCardScaningView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHSIDCardScaningView.h; sourceTree = "<group>"; };
+		04B8BCF7256CC98A00FDACF6 /* libexidcardios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libexidcardios.a; sourceTree = "<group>"; };
+		04B8BCF9256CC98A00FDACF6 /* zocr0.lib */ = {isa = PBXFileReference; lastKnownFileType = file; path = zocr0.lib; sourceTree = "<group>"; };
+		04B8BCFA256CC98A00FDACF6 /* commondef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commondef.h; sourceTree = "<group>"; };
+		04B8BCFB256CC98A00FDACF6 /* excards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = excards.h; sourceTree = "<group>"; };
+		04B8BCFD256CC98A00FDACF6 /* UIImage+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extend.h"; sourceTree = "<group>"; };
+		04B8BCFE256CC98A00FDACF6 /* UIAlertController+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+Extend.m"; sourceTree = "<group>"; };
+		04B8BCFF256CC98A00FDACF6 /* UIImage+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extend.m"; sourceTree = "<group>"; };
+		04B8BD00256CC98A00FDACF6 /* UIAlertController+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Extend.h"; sourceTree = "<group>"; };
 		4603B053FC5A71E11CC415CE /* Pods_TestFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		484D0F14FC34A6837F723105 /* Pods-TestFramework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestFramework.release.xcconfig"; path = "Target Support Files/Pods-TestFramework/Pods-TestFramework.release.xcconfig"; sourceTree = "<group>"; };
 		A4B2DE4A23C31D4C00F8F566 /* TestFramework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestFramework.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,6 +221,7 @@
 				A4FF4E8A24358EB9009E1D8A /* SeetaQualityAssessor300.framework in Frameworks */,
 				A4B2DEDF23C338A600F8F566 /* libjpeg.a in Frameworks */,
 				A4B2DEDD23C3372B00F8F566 /* opencv2.framework in Frameworks */,
+				04B8BD01256CC98A00FDACF6 /* libexidcardios.a in Frameworks */,
 				A4FF4E9024358EB9009E1D8A /* SeetaEyeStateDetector200.framework in Frameworks */,
 				A4FF4E8224358EB9009E1D8A /* SeetaGenderPredictor600.framework in Frameworks */,
 				A4B2DE8223C321AE00F8F566 /* Accelerate.framework in Frameworks */,
@@ -219,6 +266,8 @@
 			children = (
 				04AC3FC325639E7B005AA6F5 /* JunPreviewView.h */,
 				04AC3FC425639E7B005AA6F5 /* JunPreviewView.m */,
+				042479A7256FA99F00B769C9 /* TestResultView.h */,
+				042479A8256FA99F00B769C9 /* TestResultView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -268,8 +317,89 @@
 				A4B2DE5423C31D4C00F8F566 /* ViewController.mm */,
 				04549F892565FB4300CF99AB /* OpencvCameraViewController.h */,
 				04549F8A2565FB4300CF99AB /* OpencvCameraViewController.mm */,
+				042479A4256F9C2200B769C9 /* testImageViewController.h */,
+				042479A5256F9C2200B769C9 /* testImageViewController.mm */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		04B8BCD9256CC6EA00FDACF6 /* IDCardRecognition */ = {
+			isa = PBXGroup;
+			children = (
+				04B8BCDA256CC6EA00FDACF6 /* Controller */,
+				04B8BCE5256CC6EA00FDACF6 /* Model */,
+				04B8BCE8256CC6EA00FDACF6 /* View */,
+			);
+			path = IDCardRecognition;
+			sourceTree = "<group>";
+		};
+		04B8BCDA256CC6EA00FDACF6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				04B8BCE2256CC6EA00FDACF6 /* AVCaptureViewController.h */,
+				04B8BCDE256CC6EA00FDACF6 /* AVCaptureViewController.m */,
+				04B8BCDB256CC6EA00FDACF6 /* IDAuthViewController.h */,
+				04B8BCE0256CC6EA00FDACF6 /* IDAuthViewController.m */,
+				04B8BCE1256CC6EA00FDACF6 /* IDAuthViewController.xib */,
+				04B8BCE3256CC6EA00FDACF6 /* IDInfoViewController.h */,
+				04B8BCDD256CC6EA00FDACF6 /* IDInfoViewController.m */,
+				04B8BCDC256CC6EA00FDACF6 /* IDInfoViewController.xib */,
+				04B8BCE4256CC6EA00FDACF6 /* JQAVCaptureViewController.h */,
+				04B8BCDF256CC6EA00FDACF6 /* JQAVCaptureViewController.m */,
+				0424795B256CDB6A00B769C9 /* IDInfoViewControllers.h */,
+				0424795C256CDB6A00B769C9 /* IDInfoViewControllers.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		04B8BCE5256CC6EA00FDACF6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				04B8BCE7256CC6EA00FDACF6 /* IDInfo.h */,
+				04B8BCE6256CC6EA00FDACF6 /* IDInfo.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		04B8BCE8256CC6EA00FDACF6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04B8BCEB256CC6EA00FDACF6 /* JQIDCardScaningView.h */,
+				04B8BCE9256CC6EA00FDACF6 /* JQIDCardScaningView.m */,
+				04B8BCEC256CC6EA00FDACF6 /* LHSIDCardScaningView.h */,
+				04B8BCEA256CC6EA00FDACF6 /* LHSIDCardScaningView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04B8BCF6256CC98A00FDACF6 /* libexidcard */ = {
+			isa = PBXGroup;
+			children = (
+				04B8BCF7256CC98A00FDACF6 /* libexidcardios.a */,
+				04B8BCF8256CC98A00FDACF6 /* dicts */,
+				04B8BCFA256CC98A00FDACF6 /* commondef.h */,
+				04B8BCFB256CC98A00FDACF6 /* excards.h */,
+			);
+			path = libexidcard;
+			sourceTree = "<group>";
+		};
+		04B8BCF8256CC98A00FDACF6 /* dicts */ = {
+			isa = PBXGroup;
+			children = (
+				04B8BCF9256CC98A00FDACF6 /* zocr0.lib */,
+			);
+			path = dicts;
+			sourceTree = "<group>";
+		};
+		04B8BCFC256CC98A00FDACF6 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				04B8BCFD256CC98A00FDACF6 /* UIImage+Extend.h */,
+				04B8BCFE256CC98A00FDACF6 /* UIAlertController+Extend.m */,
+				04B8BCFF256CC98A00FDACF6 /* UIImage+Extend.m */,
+				04B8BD00256CC98A00FDACF6 /* UIAlertController+Extend.h */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		A4B2DE4123C31D4C00F8F566 = {
@@ -295,6 +425,9 @@
 		A4B2DE4C23C31D4C00F8F566 /* TestFramework */ = {
 			isa = PBXGroup;
 			children = (
+				04B8BCFC256CC98A00FDACF6 /* Category */,
+				04B8BCF6256CC98A00FDACF6 /* libexidcard */,
+				04B8BCD9256CC6EA00FDACF6 /* IDCardRecognition */,
 				04549FBA2567C41000CF99AB /* Model */,
 				04549FAF2567663E00CF99AB /* Tools */,
 				04549FA2256751F200CF99AB /* Utils */,
@@ -414,9 +547,12 @@
 				A4FF4EA224358ECC009E1D8A /* SeetaFaceLandmarker600.framework in Resources */,
 				A4FF4EA324358ECC009E1D8A /* SeetaFaceRecognizer610.framework in Resources */,
 				A4FF4EA424358ECC009E1D8A /* SeetaFaceTracking600.framework in Resources */,
+				04B8BD02256CC98A00FDACF6 /* zocr0.lib in Resources */,
 				A4FF4EA524358ECC009E1D8A /* SeetaGenderPredictor600.framework in Resources */,
+				04B8BCF2256CC6EA00FDACF6 /* IDAuthViewController.xib in Resources */,
 				A4FF4EA624358ECC009E1D8A /* SeetaMaskDetector200.framework in Resources */,
 				A4FF4EA724358ECC009E1D8A /* SeetaPoseEstimation600.framework in Resources */,
+				04B8BCED256CC6EA00FDACF6 /* IDInfoViewController.xib in Resources */,
 				A4FF4EA824358ECC009E1D8A /* SeetaQualityAssessor300.framework in Resources */,
 				A4FF4EA924358ECC009E1D8A /* tennis.framework in Resources */,
 				A4B2DEC823C32F4900F8F566 /* assert in Resources */,
@@ -476,6 +612,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				04549F8825651CD700CF99AB /* UIImage+Add.m in Sources */,
+				0424795D256CDB6A00B769C9 /* IDInfoViewControllers.m in Sources */,
+				04B8BD04256CC98A00FDACF6 /* UIImage+Extend.m in Sources */,
+				04B8BCF1256CC6EA00FDACF6 /* IDAuthViewController.m in Sources */,
 				04549FA52567520600CF99AB /* Utils.m in Sources */,
 				A4B2DE5523C31D4C00F8F566 /* ViewController.mm in Sources */,
 				A4B2DE4F23C31D4C00F8F566 /* AppDelegate.m in Sources */,
@@ -486,8 +625,17 @@
 				A4B2DE5223C31D4C00F8F566 /* SceneDelegate.m in Sources */,
 				04549F8B2565FB4300CF99AB /* OpencvCameraViewController.mm in Sources */,
 				A4FF4EAC2435A44C009E1D8A /* UIImage+OpenCV.mm in Sources */,
+				04B8BCF0256CC6EA00FDACF6 /* JQAVCaptureViewController.m in Sources */,
+				04B8BCEF256CC6EA00FDACF6 /* AVCaptureViewController.m in Sources */,
+				04B8BCF3256CC6EA00FDACF6 /* IDInfo.m in Sources */,
 				04549FA8256758A900CF99AB /* UIImage+Extend.m in Sources */,
 				04549FBD2567C42D00CF99AB /* SeetaImageModel.m in Sources */,
+				04B8BCF5256CC6EA00FDACF6 /* LHSIDCardScaningView.m in Sources */,
+				04B8BCF4256CC6EA00FDACF6 /* JQIDCardScaningView.m in Sources */,
+				042479A9256FA99F00B769C9 /* TestResultView.m in Sources */,
+				04B8BD03256CC98A00FDACF6 /* UIAlertController+Extend.m in Sources */,
+				042479A6256F9C2200B769C9 /* testImageViewController.mm in Sources */,
+				04B8BCEE256CC6EA00FDACF6 /* IDInfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,6 +796,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/TestFramework/libexidcard",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = seetadev.demo.test.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -681,6 +830,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/TestFramework/libexidcard",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = seetadev.demo.test.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -117,6 +117,8 @@ std::shared_ptr<float> extract(
 
 //@property (nonatomic, assign) float simmarly;
 @property (nonatomic,strong) NSTimer *timer;
+
+
 @end
 
 @implementation OpencvCameraViewController
@@ -364,7 +366,6 @@ STD_API(SeetaImageData) EXCARDS_RecoUnsignedCharData( int nWidth, int nHeight,in
     float simalityFl = FR.CalculateSimilarity(featurecompare.get(), featureIdCard.get());
     NSLog(@"%f",simalityFl);
     [self.sum addObject:@(simalityFl)];
-//    self.simmarly = [self complaeteFloat:self.sum];
     if (self.spoofStatus == FaceVerifyAnitSpoofStatusReal) {
         BOOL isPassVerify = [self isPassVerifyDetectAndSpoof:simalityFl];
         if ([self.mCaptureSession isRunning]) {
@@ -590,6 +591,8 @@ STD_API(SeetaImageData) EXCARDS_RecoUnsignedCharData( int nWidth, int nHeight,in
 #pragma mark - view即将出现时
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.currentLight = [[UIScreen mainScreen] brightness];
+    [[UIScreen mainScreen] setBrightness:1];
     cv::Mat mat = [self cvMatFromUIImageIdCard:self.IdCardImg];
     [self EXCARDS_feature:mat];
     // 将AVCaptureViewController的navigationBar调为透明
@@ -663,10 +666,9 @@ STD_API(SeetaImageData) EXCARDS_RecoUnsignedCharData( int nWidth, int nHeight,in
 }
 //MARK: 描述 - 判断结果
 -(BOOL)isPassVerifyDetectAndSpoof:(float)samiltay {
-//    if (samiltay > 0.25 && self.spoofStatus == FaceVerifyAnitSpoofStatusReal) {
-    if (samiltay > 0.28) {
+    if (samiltay > 0.20) {
         return true;
-    }else {
+    }else{
         return false;
     }
 }

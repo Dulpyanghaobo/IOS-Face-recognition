@@ -35,6 +35,9 @@ typedef NS_ENUM(NSInteger, FaceVerifyAnitSpoofStatus) {
 @property (nonatomic,strong)NSValue *IdCardfacePos ;
 /** 人脸识别结果*/
 @property (nonatomic, assign) FaceVerifyStatus status;
+
+/** 调整控制器亮度*/
+@property (nonatomic, readwrite, assign) CGFloat currentLight;
 //是否为真脸
 @property (nonatomic, assign) FaceVerifyAnitSpoofStatus spoofStatus;
 @property (nonatomic,strong) void (^SelectedCallBack)(BOOL isSuccess);

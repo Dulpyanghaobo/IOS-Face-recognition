@@ -37,9 +37,14 @@
 #import "UIImage+Add.h"
 #import "OpencvCameraViewController.h"
 #import "SeetaImageModel.h"
+#import "UIAlertController+Extend.h"
+#import "AVCaptureViewController.h"
+#import "JQAVCaptureViewController.h"
+#import "IDInfoViewControllers.h"
+#import "IDInfo.h"
 //#import <string.h>
 #import <string.h>
-
+#import "testImageViewController.h"
 #include <stdlib.h>
 #define EHiWeakSelf(type)           __weak typeof(type) weak##type = type;
 #define EHiStrongSelf(_instance)    __strong typeof(weak##_instance) _instance = weak##_instance;
@@ -69,11 +74,13 @@ __const int w = [[UIScreen mainScreen] bounds].size.width;
 @property (nonatomic,strong) UIButton *showImage;
 
 /** 身份证背面照片*/
-//@property (nonatomic,strong) UIButton *backShowImage;
+@property (nonatomic,strong) UIButton *backShowImage;
 
 @property (nonatomic,strong) UIButton *IdCardInfoButton;
 
 @property (nonatomic,strong) UIImage *IdcardImage;
+
+@property (nonatomic,strong) UIImage *backIdCardImg;
 @property (nonatomic,strong) SeetaImageModel *model;
 //数据
 //------------------  数据  ---------------------
@@ -81,6 +88,10 @@ __const int w = [[UIScreen mainScreen] bounds].size.width;
 @property (nonatomic,strong) NSArray<UIImage *> *imageArry;
 
 @property (nonatomic,strong) OpencvCameraViewController *vc;
+
+@property (nonatomic,strong) IDInfo *info;
+
+@property (nonatomic,strong) UIButton *imageTestButton;
 
 @end
 
@@ -156,34 +167,37 @@ namespace seeta {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = @"身份证验证Demo";
     [self p_setUpUI];
 }
 //MARK: 描述 -delegate
 
 - (void)pickerFormLibray {
-    TZImagePickerController *imagePickerVC = [[TZImagePickerController alloc] initWithMaxImagesCount:1 columnNumber:4 delegate:nil];
-    
-    imagePickerVC.maxImagesCount = 1;
-    imagePickerVC.isSelectOriginalPhoto = NO;
-    imagePickerVC.allowPickingOriginalPhoto = NO;
-    imagePickerVC.allowPickingVideo = NO;
-    imagePickerVC.allowTakeVideo = NO;
-    imagePickerVC.showPhotoCannotSelectLayer = YES;
-    imagePickerVC.cannotSelectLayerColor = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
-    imagePickerVC.oKButtonTitleColorNormal = [UIColor whiteColor];
-    imagePickerVC.oKButtonTitleColorDisabled = [UIColor whiteColor];
-    imagePickerVC.iconThemeColor = [UIColor greenColor];
-    
-    UIImage *selectedImage = [UIImage imageWithColor:[UIColor greenColor] size:CGSizeMake(24, 24)];
-    selectedImage = [selectedImage imageByRoundCornerRadius:12];
-    imagePickerVC.photoSelImage = selectedImage;
-
+    AVCaptureViewController *AVCaptureVC = [[AVCaptureViewController alloc] init];
     EHiWeakSelf(self)
-    [imagePickerVC setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+        AVCaptureVC.SelectedCallBack = ^(UIImage *img) {
+            EHiStrongSelf(self)
+
+            [self.showImage setImage:img forState:UIControlStateNormal];
+            self.IdcardImage = img;
+        };
+    AVCaptureVC.SelectedIdCardInfoCallBack = ^(IDInfo *info) {
         EHiStrongSelf(self)
-        [self selectedImage:photos.firstObject];
-    }];
-    [self.navigationController presentViewController:imagePickerVC animated:nil completion:nil];
+        self.info = info;
+    };
+    [self.navigationController pushViewController:AVCaptureVC animated:YES];
+}
+- (void)pickerFormBackLibray {
+    JQAVCaptureViewController *JQAVCaptureVC = [[JQAVCaptureViewController alloc] init];
+    EHiWeakSelf(self)
+    JQAVCaptureVC.SelectedCallBack = ^(UIImage *img) {
+            EHiStrongSelf(self)
+
+            [self.backShowImage setImage:img forState:UIControlStateNormal];
+            self.backIdCardImg = img;
+        };
+    
+    [self.navigationController pushViewController:JQAVCaptureVC animated:YES];
 }
 - (void)selectedImage:(UIImage *)photos {
     [self.showImage setImage:photos forState:UIControlStateNormal];
@@ -226,6 +240,7 @@ return nLen;
             _vc.SelectedCallBack = ^(BOOL isSuccess) {
                 EHiStrongSelf(self)
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    [[UIScreen mainScreen]setBrightness:self.vc.currentLight];
                 if (isSuccess) {
                     self.showPassLab.text = @"通过验证";
                 }else {
@@ -252,8 +267,9 @@ return nLen;
     [self.view addSubview:self.detailDataButton];
     [self.view addSubview:self.showPassLab];
     [self.view addSubview:self.showImage];
-//    [self.view addSubview:self.backShowImage];
+    [self.view addSubview:self.backShowImage];
     [self.view addSubview:self.IdCardInfoButton];
+    [self.view addSubview:self.imageTestButton];
     [self add_Masrony];
 }
 - (void) add_Masrony {
@@ -289,12 +305,18 @@ return nLen;
         make.top.mas_offset(100);
         make.height.mas_equalTo(180);
     }];
-//    [self.backShowImage mas_makeConstraints:^(MASConstraintMaker *make){
-//        make.left.mas_offset(12);
-//        make.right.mas_offset(-12);
-//        make.top.equalTo(self.showImage.mas_bottom).offset(12);
-//        make.height.mas_equalTo(92);
-//    }];
+    [self.backShowImage mas_makeConstraints:^(MASConstraintMaker *make){
+        make.left.mas_offset(12);
+        make.right.mas_offset(-12);
+        make.top.equalTo(self.showImage.mas_bottom).offset(12);
+        make.height.mas_equalTo(180);
+    }];
+    [self.imageTestButton mas_makeConstraints:^(MASConstraintMaker *make){
+        make.left.mas_offset(12);
+        make.right.mas_offset(-12);
+        make.height.mas_equalTo(30);
+        make.bottom.equalTo(self.detailDataButton.mas_top).offset(-18);
+    }];
 
 }
 //MARK: 描述 - event
@@ -303,18 +325,44 @@ return nLen;
 }
 
 - (void)didClickIt {
-    if (self.IdcardImage) {
+    if (self.IdcardImage && self.backIdCardImg) {
         self.vc.IdCardImg = self.IdcardImage;
         [self.navigationController pushViewController:self.vc animated:NO];
     } else {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"抱歉为检测到你上传身份证"
-                                                                                     message:@"请重新上传"
-                                                                              preferredStyle:UIAlertControllerStyleAlert];
+        EHiWeakSelf(self)
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"返回" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            EHiStrongSelf(self)
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"未检测到身份证信息" okAction:okAction cancelAction:nil];
         [self.navigationController presentViewController:alertController animated:false completion:nil];
     }
 }
+
 - (void)getDetailIdCardInfo {
-    
+    if (self.info) {
+        IDInfoViewControllers *infoVC = [[IDInfoViewControllers alloc]init];
+        infoVC.IDInfo = self.info;
+        infoVC.IDImage = self.IdcardImage;
+        [self.navigationController pushViewController:infoVC animated:NO];
+    }else {
+        EHiWeakSelf(self)
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"返回" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            EHiStrongSelf(self)
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"未检测到身份证信息" okAction:okAction cancelAction:nil];
+        [self.navigationController presentViewController:alertController animated:false completion:nil];
+    }
+
+}
+- (void)testImage {
+    testImageViewController *vc = [[testImageViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:NO];
+}
+- (void)checkItBackImage {
+    [self pickerFormBackLibray];
+
 }
 //MARK: 描述 -event
 - (void)checkItImage {
@@ -336,7 +384,7 @@ return nLen;
 - (UIButton *)detailDataButton {
     if (!_detailDataButton) {
         _detailDataButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_detailDataButton setTitle:@"人脸识别详细数据" forState:UIControlStateNormal];
+//        [_detailDataButton setTitle:@"人脸识别详细数据" forState:UIControlStateNormal];
         [_detailDataButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
         [_detailDataButton addTarget:self action:@selector(getDetailData) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -347,7 +395,6 @@ return nLen;
         _showPassLab = [[UILabel alloc]init];
         _showPassLab.font = [UIFont systemFontOfSize:30];
         _showPassLab.textColor = [UIColor redColor];
-        _showPassLab.text = @"未通过验证";
         _showPassLab.textAlignment =NSTextAlignmentCenter;
     }
     return _showPassLab;
@@ -363,16 +410,17 @@ return nLen;
     }
     return  _showImage;
 }
-//- (UIButton *)backShowImage {
-//    if (!_backShowImage) {
-//        _backShowImage = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [_backShowImage setTitle:@"上传身份证背面" forState:UIControlStateNormal];
-//        _backShowImage.backgroundColor = [UIColor grayColor];
-//        _backShowImage.layer.cornerRadius = 12;
-//        [_backShowImage setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    }
-//    return  _backShowImage;
-//}
+- (UIButton *)backShowImage {
+    if (!_backShowImage) {
+        _backShowImage = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_backShowImage setTitle:@"上传身份证背面" forState:UIControlStateNormal];
+        _backShowImage.backgroundColor = [UIColor grayColor];
+        _backShowImage.layer.cornerRadius = 12;
+        [_backShowImage setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_backShowImage addTarget:self action:@selector(checkItBackImage) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return  _backShowImage;
+}
 - (UIButton *)IdCardInfoButton {
     if (!_IdCardInfoButton) {
         _IdCardInfoButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -381,5 +429,15 @@ return nLen;
         [_IdCardInfoButton addTarget:self action:@selector(getDetailIdCardInfo) forControlEvents:UIControlEventTouchUpInside];
     }
     return  _IdCardInfoButton;
+}
+
+- (UIButton *)imageTestButton {
+    if (!_imageTestButton) {
+        _imageTestButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_imageTestButton setTitle:@"测试数据" forState:UIControlStateNormal];
+        _imageTestButton.backgroundColor = [UIColor orangeColor];
+        [_imageTestButton addTarget:self action:@selector(testImage) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return  _imageTestButton;
 }
 @end
