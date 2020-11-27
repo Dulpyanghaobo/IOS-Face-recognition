@@ -61,6 +61,8 @@ STD_API(SeetaImageData) EXCARDS_RecoUnsignedCharDatas( int nWidth, int nHeight,i
 @property (nonatomic,strong) NSString *bundles;
 
 @property (nonatomic,strong) NSString *bundlesTestImage;
+
+@property (nonatomic,strong) NSMutableArray *sumArray;
 @end
 
 @implementation testImageViewController
@@ -73,7 +75,7 @@ STD_API(SeetaImageData) EXCARDS_RecoUnsignedCharDatas( int nWidth, int nHeight,i
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.bundles =[NSString stringWithFormat:@"%@/assert/Ben_Howland/",[[NSBundle mainBundle] resourcePath]];
+    self.bundles =[NSString stringWithFormat:@"%@/assert/test/",[[NSBundle mainBundle] resourcePath]];
 //    self.bundles =[NSString stringWithFormat:@"%@/assert/Aaron_Sorkin/",[[NSBundle mainBundle] resourcePath]];
     NSLog(@"%@aligned_detect_0.602.jpg",self.bundles);
     self.bundlesTestImage =[NSString stringWithFormat:@"%@/assert/Aaron_Eckhart/",[[NSBundle mainBundle] resourcePath]];
@@ -130,12 +132,17 @@ STD_API(SeetaImageData) EXCARDS_RecoUnsignedCharDatas( int nWidth, int nHeight,i
             float simalityFl = FRs.CalculateSimilarity(featurecompare.get(), featureIdCard.get());
             //MARK: 描述-对比分数
             NSLog(@"%f",simalityFl);
+            [self.sumArray addObject:@(simalityFl)];
         }
 
     }else{
         NSLog(@"你打印的是目录或者不存在");
     }
 
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    NSLog(@"%@",self.sumArray);
 }
 /** 获取人脸特征进行相似度对比*/
 - (std::shared_ptr<float>) EXCARDS_feature:(cv::Mat) cvimage{
@@ -166,5 +173,12 @@ STD_API(SeetaImageData) EXCARDS_RecoUnsignedCharDatas( int nWidth, int nHeight,i
     newChannels = {channel1,channel2,channel3};
     cv::merge(newChannels, three_channel);
     return three_channel;
+}
+
+- (NSMutableArray *)sumArray {
+    if (!_sumArray) {
+        _sumArray = [NSMutableArray array];
+    }
+    return _sumArray;
 }
 @end
